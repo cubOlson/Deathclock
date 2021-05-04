@@ -4,10 +4,15 @@ from app.models import db, User
 # Adds a demo user, you can add other users here if you want
 def seed_users():
 
-    demo = User(username='Demo', email='demo@aa.io',
+    demo = [User(username='Demo', email='demo@aa.io',
+                password='password'),
+            User(username='Mamo', email='mamo@aa.io',
+                password='password'),
+            User(username='Himo', email='himo@aa.io',
                 password='password')
+            ]
 
-    db.session.add(demo)
+    db.session.add_all(demo)
 
     db.session.commit()
 
@@ -16,5 +21,5 @@ def seed_users():
 # TRUNCATE Removes all the data from the table, and resets
 # the auto incrementing primary key
 def undo_users():
-    db.session.execute('TRUNCATE users;')
+    db.session.execute('TRUNCATE users CASCADE;')
     db.session.commit()
