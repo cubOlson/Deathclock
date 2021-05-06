@@ -21,14 +21,12 @@ class Clock(db.Model):
     def to_dict(self):
         return {
           "id": self.id,
-          "userId": self.userId,
+          "userId": self.user_id,
           "title": self.title,
           "description": self.description,
           "danger": self.danger,
           "startDate": self.startDate,
           "endDate": self.endDate,
-          "startTime": self.startTime,
-          "endTime": self.endTime,
           "address": self.address,
           "startLat": self.startLat,
           "startLong": self.startLong,

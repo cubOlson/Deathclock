@@ -7,6 +7,8 @@ import NavBar from "./components/NavBar";
 import ProtectedRoute from "./components/auth/ProtectedRoute";
 import UsersList from "./components/UsersList";
 import User from "./components/User";
+import UserFollow from './components/UserFollow/UserFollow';
+import Clock from './components/Clock/clock'
 import { authenticate } from './store/session'
 
 function App() {
@@ -18,7 +20,7 @@ function App() {
       await dispatch(authenticate());
       setLoaded(true);
     })();
-  }, []);
+  }, [dispatch]);
 
   if (!loaded) {
     return null;
@@ -28,21 +30,35 @@ function App() {
     <BrowserRouter>
       <NavBar />
       <Switch>
+
         <Route path="/login" exact={true}>
           <LoginForm />
         </Route>
+
         <Route path="/sign-up" exact={true}>
           <SignUpForm />
         </Route>
+
         <ProtectedRoute path="/users" exact={true} >
           <UsersList/>
         </ProtectedRoute>
+
         <ProtectedRoute path="/users/:userId" exact={true} >
           <User />
         </ProtectedRoute>
+
         <ProtectedRoute path="/" exact={true} >
           <h1>Home Page</h1>
         </ProtectedRoute>
+
+        <ProtectedRoute path="/userTest" exact={true} >
+          <UserFollow />
+        </ProtectedRoute>
+
+        <ProtectedRoute path="/clockTest" exact={true} >
+          <Clock />
+        </ProtectedRoute>
+
       </Switch>
     </BrowserRouter>
   );
