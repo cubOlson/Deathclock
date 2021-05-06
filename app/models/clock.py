@@ -4,11 +4,10 @@ class Clock(db.Model):
     __tablename__ = 'clocks'
 
     id = db.Column(db.Integer, primary_key = True)
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
+    userId = db.Column(db.Integer, db.ForeignKey('users.id'), nullable = False)
     title = db.Column(db.String(100), nullable = False)
     description = db.Column(db.String(1000), nullable = False)
     danger = db.Column(db.Integer, nullable = False)
-    startDate = db.Column(db.DateTime, nullable = False)
     endDate = db.Column(db.DateTime, nullable = False)
     address = db.Column(db.String(255))
     startLat = db.Column(db.Float)
@@ -21,11 +20,10 @@ class Clock(db.Model):
     def to_dict(self):
         return {
           "id": self.id,
-          "userId": self.user_id,
+          "userId": self.userId,
           "title": self.title,
           "description": self.description,
           "danger": self.danger,
-          "startDate": self.startDate,
           "endDate": self.endDate,
           "address": self.address,
           "startLat": self.startLat,

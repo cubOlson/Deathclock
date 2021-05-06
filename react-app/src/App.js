@@ -9,6 +9,7 @@ import UsersList from "./components/UsersList";
 import User from "./components/User";
 import UserFollow from './components/UserFollow/UserFollow';
 import Clock from './components/Clock/clock'
+import CreateClockForm from './components/ClockForm/ClockForm'
 import { authenticate } from './store/session'
 
 function App() {
@@ -57,6 +58,10 @@ function App() {
 
         <ProtectedRoute path="/clockTest" exact={true} >
           <Clock />
+        </ProtectedRoute>
+
+        <ProtectedRoute path="/clockForm" exact={true} >
+          <CreateClockForm />
         </ProtectedRoute>
 
       </Switch>
