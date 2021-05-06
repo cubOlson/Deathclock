@@ -24,19 +24,11 @@ def getUserClock(id):
 def create_clock():
     form = NewClockForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    print('REC', request.get_json())
     req = request.get_json()
-
-    # date_time_str = '2018-06-29 17:08:00'
-    # date_time_obj = dt.datetime.strptime(date_time_str, '%Y-%m-%d %H:%M:%S')
-
-    print('RIGHT HERE', req["danger"])
     if form.validate_on_submit():
-        print('IN IF', form)
         newClock = Clock()
         form.populate_obj(newClock)
         db.session.add(newClock)
         db.session.commit()
         return newClock.to_dict()
-    print('errors', form.errors)
-    return 'BadData'
+    return {'Bad Data'}
