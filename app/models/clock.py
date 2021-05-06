@@ -1,5 +1,21 @@
 from .db import db
 
+clock_tags = db.Table(
+    "clock_tags",
+    db.Column(
+        "clock_id", 
+        db.Integer, 
+        db.ForeignKey("clocks.id"), 
+        primary_key=True
+    ),
+    db.Column(
+        "tag_id", 
+        db.Integer, 
+        db.ForeignKey("tags.id"), 
+        primary_key=True
+    )
+)
+
 class Clock(db.Model):
     __tablename__ = 'clocks'
 
@@ -16,6 +32,12 @@ class Clock(db.Model):
     endLong = db.Column(db.Float)
 
     user = db.relationship("User")
+    
+    tags = db.relationship(
+        "Tag", 
+        secondary=clock_tags, 
+        back_populates="clocks"
+    )
 
     def to_dict(self):
         return {

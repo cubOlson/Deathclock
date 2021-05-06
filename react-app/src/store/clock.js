@@ -22,7 +22,6 @@ export const getClockThunk = (id) => async(dispatch) => {
 
 export const createClockThunk = (clock) => async(dispatch) => {
     const { userId, title, description, danger, endDate, address, startLat, startLong, endLat, endLong } = clock
-    console.log('-----------Clock', clock)
     const response = await fetch('/api/clock/new', {
       method: "POST",
       headers: {
