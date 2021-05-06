@@ -3,17 +3,15 @@ from app.models import db, Clock
 # Adds a demo user, you can add other users here if you want
 def seed_clocks():
 
-    demo = [Clock(user_id= 1, 
+    demo = [Clock(userId= 1, 
                   title= 'Backpacking',
                   description= "I'm going backpacking in the Himalayas.",
                   danger= 4,
-                  startDate= "2021-05-04T09:00",
                   endDate= "2021-05-08T12:00"),
-            Clock(user_id= 2, 
+            Clock(userId= 2, 
                   title= 'Backpacking',
                   description= "I'm going backpacking in the Himalayas.",
                   danger= 4,
-                  startDate= "2021-05-04T09:00",
                   endDate= "2021-05-08T12:00"),
 ]
     db.session.add_all(demo)
