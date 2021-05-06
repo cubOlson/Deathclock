@@ -23,5 +23,5 @@ def seed_clocks():
 # TRUNCATE Removes all the data from the table, and resets
 # the auto incrementing primary key
 def undo_clocks():
-    db.session.execute('TRUNCATE clocks;')
+    db.session.execute('TRUNCATE clocks CASCADE;')
     db.session.commit()
