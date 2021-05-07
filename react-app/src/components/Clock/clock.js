@@ -1,36 +1,90 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { getClockThunk } from '../../store/clock'
+import { useDispatch } from 'react-redux';
+import { deleteClockThunk } from '../../store/clock'
 
-function Clock(){
+import './clock.css'
+
+function Clock(props){
     const dispatch = useDispatch()
-    const clock = useSelector(state => state.clock)
-    const user = useSelector(state => state.session.user)
+    const clock = props.clock;
 
-    let userId
-    if (user){
-        userId = user.id
-    }
-
+    
     const calculateTimeLeft = () => {
-        let now = new Date()
-        console.log(now)
-        console.log(clock.endDate)
+        let endTime = +new Date(clock.endDate)
+        let now = +new Date()
+        const difference = endTime - now
+        let timeLeft = {}
+
+        if (difference > 0) {
+            timeLeft = {
+              days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+              hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+              minutes: Math.floor((difference / 1000 / 60) % 60),
+              seconds: Math.floor((difference / 1000) % 60)
+          };
+        }
+        return timeLeft;
     }
-    if (clock) {
-        calculateTimeLeft()
-    }
+
+    const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
     useEffect(() => {
-        dispatch(getClockThunk(userId))
-    }, [dispatch])
+        const timer = setTimeout(() => {
+            setTimeLeft(calculateTimeLeft());
+        }, 1000);
+        return () => clearTimeout(timer);
+    }, [timeLeft])
+
+    const deleteClock = (e) => {
+        e.preventDefault()
+        dispatch(deleteClockThunk(clock.id))
+    }
 
     return (
-        <div>
+        <div className="componentParent">
             {clock ?
-                <div>
-                    <p>{clock.title}</p>
-                    <p>{clock.endDate}</p>
+                <div className="clockParent">
+                    <div className="clockTitle">
+                        <h2>{clock.title}</h2>
+                    </div>
+                    <div className="timerParent">
+                        <div className="timerBox">
+                            <div className="titleBox">
+                                <p>days</p>
+                            </div>
+                            <div className="numberBox">
+                                <h1>{timeLeft.days}</h1>
+                            </div>
+                        </div>
+                        <div className="timerBox">
+                            <div className="titleBox">
+                                <p>hours</p>
+                            </div>
+                            <div className="numberBox">
+                                <h1>{timeLeft.hours}</h1>
+                            </div>
+                        </div>
+                        <div className="timerBox">
+                            <div className="titleBox">
+                                <p>min</p>
+                            </div>
+                            <div className="numberBox">
+                                <h1>{timeLeft.minutes}</h1>
+                            </div>
+                        </div>
+                        <div className="timerBox">
+                            <div className="titleBox">
+                                <p>sec</p>
+                            </div>
+                            <div className="numberBox">
+                                <h1>{timeLeft.seconds}</h1>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="tagParent">
+                        <p>Tags</p>
+                    </div>
+                    <button onClick={e => deleteClock(e)}>Cancel Clock</button>
                 </div>
             : null}
         </div>

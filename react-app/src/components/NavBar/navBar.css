@@ -1,0 +1,33 @@
+:root{
+    --yellow: #f2b33d;
+    --orange: #f27405;
+    --red: #a62f03;
+    --brown: #400101;
+    --black: #0d0d0d;
+}
+
+.navParent {
+    width: 100%;
+}
+
+.buttonParent {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 95%;
+    background-color: var(--brown);
+}
+
+.button {
+    text-decoration: none;
+    box-sizing: border-box;
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid var(--orange);
+    border-radius: 5px;
+    color: var(--yellow);
+}
+
+.welcome {
+    color: var(--red);
+}

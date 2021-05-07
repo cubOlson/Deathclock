@@ -1,16 +1,15 @@
 import { useDispatch, useSelector } from 'react-redux'
-import { useParams, useHistory } from 'react-router-dom'
 import React, { useEffect, useState } from 'react'
-import { createClockThunk } from '../../store/clock'
+import { createClockThunk, getClockThunk } from '../../store/clock'
 
 function CreateClockForm(){
     const dispatch = useDispatch()
-    const history = useHistory()
     const user = useSelector(state => state.session.user)
+    const clock = useSelector(state => state.clock)
 
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
-    const [danger, setDanger] = useState(0)
+    const [danger, setDanger] = useState(1)
     const [endDate, setEndDate] = useState("")
     const [address, setAddress] = useState("")
     const [startLat, setStartLat] = useState(0)
@@ -44,7 +43,8 @@ function CreateClockForm(){
                 if (data && data.errors) setErrors(data.errors)
 
             })
-        history.push('/clockTest')
+            dispatch(getClockThunk(userId))
+        
     }
 
     let userId
@@ -53,7 +53,6 @@ function CreateClockForm(){
     }
 
     const today = new Date().toISOString()
-    console.log('TODAY', today)
 
     return (
         <div>
@@ -85,7 +84,6 @@ function CreateClockForm(){
                     onChange={e => setDanger(e.target.value)}
                     value={danger}
                 >
-                    <option value='0'>0 - Walk in the Park</option>
                     <option value='1'>1 - Light Risk</option>
                     <option value='2'>2 - Mom Wouldn't Like It</option>
                     <option value='3'>3 - Definite Risk</option>

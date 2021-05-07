@@ -1,5 +1,6 @@
 const GET_CLOCK = "clock/GET_CLOCK"
 const CREATE_CLOCK = "clock/CREATE_CLOCK"
+const DELETE_CLOCK = "clock/DELETE_CLOCK"
 
 const getClock = (clock) => ({
     type: GET_CLOCK,
@@ -9,6 +10,10 @@ const getClock = (clock) => ({
 const createClock = (clock) => ({
     type: CREATE_CLOCK,
     payload: clock
+})
+
+const deleteClock = () => ({
+    type: DELETE_CLOCK
 })
 
 export const getClockThunk = (id) => async(dispatch) => {
@@ -45,6 +50,12 @@ export const createClockThunk = (clock) => async(dispatch) => {
     dispatch(createClock(newClock))
     return newClock
 }
+
+export const deleteClockThunk = (id) => async (dispatch) => {
+    const response = await fetch(`/api/clock/${id}`, { method: "DELETE" })
+    dispatch(deleteClock())
+    return null;
+  }
 
 const initialState = {}
 
