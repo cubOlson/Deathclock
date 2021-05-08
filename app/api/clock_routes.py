@@ -1,7 +1,6 @@
 from flask import Blueprint, request
 from app.models import db, Clock
 from app.forms import NewClockForm
-import datetime as dt
 
 clock_routes = Blueprint('clock', __name__)
 
