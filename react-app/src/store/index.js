@@ -3,12 +3,14 @@ import thunk from 'redux-thunk';
 import session from './session'
 import userReducer from './user'
 import clockReducer from './clock'
+import formReducer from './form'
 
 
 const rootReducer = combineReducers({
     session,
     users: userReducer,
     clock: clockReducer,
+    form: formReducer,
 });
 
 let enhancer;

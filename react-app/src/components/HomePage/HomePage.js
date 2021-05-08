@@ -2,34 +2,35 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ClockForm from '../ClockForm/ClockForm'
 import Clock from '../Clock/clock'
-import { createClockThunk, getClockThunk } from '../../store/clock'
+import { getClockThunk } from '../../store/clock'
+import { setFormThunk, getFormThunk } from '../../store/form'
 
 function Home(){
     const dispatch = useDispatch()
     const clock = useSelector(state => state.clock)
     const user = useSelector(state => state.session.user)
-
-    const [formBool, setFormBool] = useState(false)
+    const form = useSelector(state => state.form)
 
     let userId
     if (user){
         userId = user.id
     }
 
-    console.log(clock)
-    // if (!clock) clock = "empty"
-
     useEffect(() => {
         dispatch(getClockThunk(userId))
     }, [dispatch])
+
+    useEffect(() => {
+        dispatch(getFormThunk())
+    }, [dispatch, form])
 
     return (
         <div>
             {clock.id ?
             <Clock clock={clock}/>
             : null}
-            {!formBool && <button onClick={e => setFormBool(true)}>Create New Clock</button>}
-            {formBool && <ClockForm />}
+            {!clock.id && <button onClick={e => dispatch(setFormThunk(true))}>Create New Clock</button>}
+            {form && <ClockForm />}
         </div>
     )
 
