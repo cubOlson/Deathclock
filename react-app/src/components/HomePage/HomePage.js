@@ -16,6 +16,9 @@ function Home(){
         userId = user.id
     }
 
+    console.log(clock)
+    // if (!clock) clock = "empty"
+
     useEffect(() => {
         dispatch(getClockThunk(userId))
     }, [dispatch])
@@ -24,7 +27,8 @@ function Home(){
         <div>
             {clock.id ?
             <Clock clock={clock}/>
-            : <button onClick={e => setFormBool(true)}>Create New Clock</button>}
+            : null}
+            {!formBool && <button onClick={e => setFormBool(true)}>Create New Clock</button>}
             {formBool && <ClockForm />}
         </div>
     )

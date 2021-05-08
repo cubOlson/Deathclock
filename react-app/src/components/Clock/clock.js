@@ -1,12 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { useDispatch } from 'react-redux';
-import { deleteClockThunk } from '../../store/clock'
+import { useDispatch, useSelector } from 'react-redux';
+import { getClockThunk, deleteClockThunk } from '../../store/clock'
 
 import './clock.css'
 
 function Clock(props){
     const dispatch = useDispatch()
     const clock = props.clock;
+    const user = useSelector(state => state.session.user)
+
+    let userId
+    if (user) userId = user.id
 
     
     const calculateTimeLeft = () => {
@@ -35,9 +39,10 @@ function Clock(props){
         return () => clearTimeout(timer);
     }, [timeLeft])
 
-    const deleteClock = (e) => {
+    const deleteClock = async (e) => {
         e.preventDefault()
-        dispatch(deleteClockThunk(clock.id))
+        await dispatch(deleteClockThunk(clock.id))
+        await dispatch(getClockThunk(userId))
     }
 
     return (

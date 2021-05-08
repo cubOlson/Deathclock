@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from 'react-redux'
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import { createClockThunk, getClockThunk } from '../../store/clock'
 
 function CreateClockForm(){
@@ -18,7 +18,7 @@ function CreateClockForm(){
     const [endLong, setEndLong] = useState(0)
     const [errors, setErrors] = useState([])
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async(e) => {
         e.preventDefault()
 
         setErrors([])
@@ -36,14 +36,15 @@ function CreateClockForm(){
             endLong
         }
 
-        dispatch(createClockThunk(payload))
+        await dispatch(createClockThunk(payload))
             .catch(async (res) => {
                 console.log('---------------', res)
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
 
             })
-            dispatch(getClockThunk(userId))
+        
+        await dispatch(getClockThunk(userId))
         
     }
 
