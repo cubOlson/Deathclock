@@ -4,6 +4,7 @@ import { NavLink } from 'react-router-dom';
 import LogoutButton from '../auth/LogoutButton';
 
 import './navBar.css'
+import logo from '../../images/ALARM.gif'
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user)
@@ -11,10 +12,11 @@ const NavBar = () => {
   return (
     <nav className="navParent">
       <div className="buttonParent">
-        <div>
-          <NavLink to="/" exact={true} className="button" activeClassName="active">
-            Home
+        <div className="logo">
+          <NavLink to="/" exact={true} activeClassName="active">
+            <img src={logo} className="navLogo"/>
           </NavLink>
+          <h1>DeathClock</h1>
         </div>
         { !user ?
           <div>

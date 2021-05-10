@@ -1,5 +1,5 @@
 from flask import Blueprint, request
-from app.models import db, Clock
+from app.models import db, Clock, Supply
 from app.forms import NewClockForm
 
 clock_routes = Blueprint('clock', __name__)
@@ -7,7 +7,12 @@ clock_routes = Blueprint('clock', __name__)
 @clock_routes.route('/<int:id>')
 def getUserClock(id):
     clock = Clock.query.filter(Clock.userId == id).all()
+    # if clock[0].supplies:
+    #     print('Clock', clock[0].supplies)
+    #     return clock[0].to_dict_supplies()
     if clock:
+        print('CLOCK', clock[0])
+        print('SUPPLIES', clock[0].supplies)
         return clock[0].to_dict()
     return {}
 
@@ -29,7 +34,11 @@ def create_clock():
 @clock_routes.route('/<int:id>', methods=["DELETE"])
 def delete_clock(id):
     clock = Clock.query.get(id)
+    supply = Supply.query.filter(Supply.clockId == clock.id).first()
     print('CLOCK', clock)
+    print("Supply" )
+    if supply:
+        db.session.delete(supply)
     db.session.delete(clock)
     db.session.commit()
     return {}

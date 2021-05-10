@@ -1,21 +1,5 @@
 from .db import db
 
-clock_tags = db.Table(
-    "clock_tags",
-    db.Column(
-        "clock_id", 
-        db.Integer, 
-        db.ForeignKey("clocks.id"), 
-        primary_key=True
-    ),
-    db.Column(
-        "tag_id", 
-        db.Integer, 
-        db.ForeignKey("tags.id"), 
-        primary_key=True
-    )
-)
-
 class Clock(db.Model):
     __tablename__ = 'clocks'
 
@@ -32,12 +16,8 @@ class Clock(db.Model):
     endLong = db.Column(db.Float)
 
     user = db.relationship("User")
-    
-    tags = db.relationship(
-        "Tag", 
-        secondary=clock_tags, 
-        back_populates="clocks"
-    )
+
+    supplies = db.relationship("Supply", back_populates="clock", lazy="joined")
 
     def to_dict(self):
         return {
@@ -52,26 +32,27 @@ class Clock(db.Model):
           "startLong": self.startLong,
           "endLat": self.endLat,
           "endLong": self.endLong,
+          "supplies": [supply.to_dict() for supply in self.supplies]
         }
 
-class Tag(db.Model):
-    __tablename__ = 'tags'
-
-    id = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String, nullable = False)
-    description = db.Column(db.String, nullable = False)
-    imageURL = db.Column(db.String, nullable = False)
-
-    clocks = db.relationship(
-        "Clock", 
-        secondary=clock_tags, 
-        back_populates="tags"
-    )
-
-    def to_dict(self):
-        return {
-          "id": self.id,
-          "name": self.name,
-          "description": self.description,
-          "imageURL": self.imageURL,
+    def to_dict_supplies(self):
+      return {
+        "id": self.id,
+        "userId": self.userId,
+        "title": self.title,
+        "description": self.description,
+        "danger": self.danger,
+        "endDate": self.endDate,
+        "address": self.address,
+        "startLat": self.startLat,
+        "startLong": self.startLong,
+        "endLat": self.endLat,
+        "endLong": self.endLong,
+        "supplies": {
+            "food": self.supplies[0].food,
+            "water": self.supplies[0].water,
+            "temp": self.supplies[0].temp,
+            "shelter": self.supplies[0].shelter,
+            "tools": self.supplies[0].tools
         }
+      }

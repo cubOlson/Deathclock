@@ -27,10 +27,13 @@ function Home(){
     return (
         <div>
             {clock.id ?
-            <Clock clock={clock}/>
+                <div>
+                    <Clock clock={clock}/>
+                </div>
             : null}
             {!clock.id && <button onClick={e => dispatch(setFormThunk(true))}>Create New Clock</button>}
-            {form && <ClockForm />}
+            {(form === true) && <button onClick={e => dispatch(setFormThunk(false))}>Cancel Clock</button>}
+            {(form === true) && <ClockForm />}
         </div>
     )
 

@@ -1,12 +1,3 @@
-:root{
-    --yellow: #f2b33d;
-    --orange: #f27405;
-    --red: #a62f03;
-    --brown: #400101;
-    --black: #0d0d0d;
-}
-
-
 .componentParent {
     display: flex;
     justify-content: center;
@@ -18,28 +9,37 @@
     box-sizing: border-box;
     margin: 10px;
     width: 90%;
-    background-color: var(--brown);
     align-items: center;
     justify-content: space-around;
 }
 
 .clockTitle {
-    color: var(--orange);
     display: flex;
     align-items: center;
     padding: 5px;
     max-width: 90%;
     max-height: 15%;
-    border: 1px solid var(--yellow);
+    border: 1px solid black;
+}
+
+.clockImage {
+    height: 250px;
 }
 
 .timerParent {
     display: flex;
     box-sizing: border-box;
+    border: 5px solid black;
     max-height: 65%;
-    justify-content: space-around;
-    background-color: var(--red);
+    justify-content: flex-start;
+    align-items: center;
     width: 90%;
+}
+
+.spacer {
+    width: 20px;
+    font-weight: bold;
+    font-size: 300%;
 }
 
 .timerBox {
@@ -47,23 +47,35 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    margin: 0px;
+    padding: 0px;
+    width: 100px;
+}
+
+.clockInfoBox {
+    box-sizing: border-box;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    margin: 10px;
+    padding: 10px;
+    height: 90%;
 }
 
 .titleBox {
-    color: var(--yellow);
     height: 30px;
 }
 
 .numberBox {
-    color: var(--black);
     display: flex;
     align-items: center;
     justify-content: center;
     box-sizing: border-box;
+    border: 1px solid black;
     padding: 20px;
     margin: 10px;
     font-size: 300%;
-    background-color: var(--yellow);
     height: 100px;
     width: 100px;
 }
