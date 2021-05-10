@@ -12,10 +12,7 @@ function Clock(props){
     const clock = props.clock;
     const user = useSelector(state => state.session.user)
     const form = useSelector(state => state.form)
-
-    console.log('CLOCK', clock)
-    console.log('SUPPLIES', clock.supplies)
-
+    
     let userId
     if (user) userId = user.id
 
