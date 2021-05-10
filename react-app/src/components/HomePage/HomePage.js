@@ -11,6 +11,8 @@ function Home(){
     const user = useSelector(state => state.session.user)
     const form = useSelector(state => state.form)
 
+    console.log(clock)
+
     let userId
     if (user){
         userId = user.id

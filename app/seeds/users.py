@@ -5,11 +5,11 @@ from app.models import db, User
 def seed_users():
 
     demo = [User(username='Demo', email='demo@aa.io',
-                password='password'),
+                password='password', bio="Hey me name is Demo I'm a climber."),
             User(username='Mamo', email='mamo@aa.io',
-                password='password'),
+                password='password', bio="Hey I'm Mamo I eat things."),
             User(username='Himo', email='himo@aa.io',
-                password='password')
+                password='password', bio="My name is Himo it's from somewhere else.")
             ]
 
     db.session.add_all(demo)

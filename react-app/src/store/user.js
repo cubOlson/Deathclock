@@ -43,7 +43,7 @@ export const unfollowUserThunk = (id) => async(dispatch) => {
     dispatch(unfollowUser())
 }
 
-const initialState = { user: null }
+const initialState = {}
 
 export default function userReducer (users = initialState, action) {
     switch(action.type){

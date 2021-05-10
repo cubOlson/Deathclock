@@ -12,22 +12,42 @@ function UserFollow() {
         dispatch(getAllUsers())
     }, [dispatch])
 
-    let userBox = users.map(user => {
-        return (
-            <div>
-                {user ?
-                    <SingleUser user={user} />
-                : null}
-            </div>
-        )
-    })
+    let userBox = users.filter(user => user.id !== currentUser.id)
+                       .filter(user => !currentUser.followers.includes(user.id))
+                       .map(user => {
+                           return (
+                               <div>
+                                   {user ?
+                                       <SingleUser user={user} />
+                                   : null}
+                               </div>
+                           )
+                       })
 
+    let followBox = users.filter(user => currentUser.followers.includes(user.id))
+                         .map(user => {
+                             return (
+                                 <div>
+                                     {user ?
+                                         <SingleUser user={user} />
+                                     : null}
+                                 </div>
+                             )
+                         })
+    
+    
     return (
         <div>
-            {users.length > 1 ?
+            {users.length > 0 ?
             <div>
-                <p>{currentUser.username}</p>
-                {userBox}
+                <div>
+                    <p>Followed Users</p>
+                    {followBox}
+                </div>
+                <div>
+                    <p>All Users</p>
+                    {userBox}
+                </div>
             </div>
             : null}
         </div>

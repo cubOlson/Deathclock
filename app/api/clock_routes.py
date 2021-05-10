@@ -7,9 +7,6 @@ clock_routes = Blueprint('clock', __name__)
 @clock_routes.route('/<int:id>')
 def getUserClock(id):
     clock = Clock.query.filter(Clock.userId == id).all()
-    # if clock[0].supplies:
-    #     print('Clock', clock[0].supplies)
-    #     return clock[0].to_dict_supplies()
     if clock:
         print('CLOCK', clock[0])
         print('SUPPLIES', clock[0].supplies)
