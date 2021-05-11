@@ -2,8 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ClockForm from '../ClockForm/ClockForm'
 import Clock from '../Clock/clock'
+import FClocksBox from '../FClocksBox/FClocksBox'
 import { getClockThunk } from '../../store/clock'
 import { setFormThunk, getFormThunk } from '../../store/form'
+
+import './HomePage.css'
 
 function Home(){
     const dispatch = useDispatch()
@@ -27,15 +30,18 @@ function Home(){
     }, [dispatch, form])
 
     return (
-        <div>
-            {clock.id ?
-                <div>
-                    <Clock clock={clock}/>
-                </div>
-            : null}
-            {!clock.id && <button onClick={e => dispatch(setFormThunk(true))}>Create New Clock</button>}
-            {(form === true) && <button onClick={e => dispatch(setFormThunk(false))}>Cancel Clock</button>}
-            {(form === true) && <ClockForm />}
+        <div className="HomePageParent">
+            <FClocksBox className="sideBar"/> 
+            <div className="mainBox">
+                {clock.id ?
+                    <div>
+                        <Clock clock={clock}/>
+                    </div>
+                : null}
+                {!clock.id && <button onClick={e => dispatch(setFormThunk(true))}>Create New Clock</button>}
+                {(form === true) && <button onClick={e => dispatch(setFormThunk(false))}>Cancel Clock</button>}
+                {(form === true) && <ClockForm />}
+            </div>
         </div>
     )
 

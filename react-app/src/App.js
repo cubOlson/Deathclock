@@ -10,7 +10,6 @@ import User from "./components/User";
 import UserFollow from './components/UserFollow/UserFollow';
 import Clock from './components/Clock/clock'
 import CreateClockForm from './components/ClockForm/ClockForm'
-import FClocksBox from './components/FClocksBox/FClocksBox'
 import HomePage from './components/HomePage/HomePage'
 import { authenticate } from './store/session'
 
@@ -32,7 +31,6 @@ function App() {
   return (
     <BrowserRouter>
       <NavBar />
-      <FClocksBox />
       <Switch>
 
         <Route path="/login" exact={true}>

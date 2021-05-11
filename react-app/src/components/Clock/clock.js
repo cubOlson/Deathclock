@@ -12,6 +12,8 @@ function Clock(props){
     const clock = props.clock;
     const user = useSelector(state => state.session.user)
     const form = useSelector(state => state.form)
+
+    console.log('SUPPLIES', clock.supplies)
     
     let userId
     if (user) userId = user.id
@@ -57,60 +59,66 @@ function Clock(props){
         <div className="componentParent">
             {clock ?
                 <div className="clockParent">
-                    <div className="clockTitle">
-                        <h2>{clock.title}</h2>
-                    </div>
                     <div className="timerParent">
                         <img src={clockImage} className="clockImage"/>
-                        <div className="timerBox">
-                            <div className="titleBox">
-                                <p>days</p>
-                            </div>
-                            <div className="numberBox">
-                                <h1>{timeLeft.days}</h1>
-                            </div>
-                        </div>
-                        <div className="spacer">:</div>
-                        <div className="timerBox">
-                            <div className="titleBox">
-                                <p>hours</p>
-                            </div>
-                            <div className="numberBox">
-                                <h1>{timeLeft.hours}</h1>
-                            </div>
-                        </div>
-                        <div className="spacer">:</div>
-                        <div className="timerBox">
-                            <div className="titleBox">
-                                <p>min</p>
-                            </div>
-                            <div className="numberBox">
-                                <h1>{timeLeft.minutes}</h1>
-                            </div>
-                        </div>
-                        <div className="spacer">:</div>
-                        <div className="timerBox">
-                            <div className="titleBox">
-                                <p>sec</p>
-                            </div>
-                            <div className="numberBox">
-                                <h1>{timeLeft.seconds}</h1>
+                        <div className="titleFix">
+                            <h1>{clock.title}</h1>
+                            <div className="timerFix">
+                                <div className="timerBox">
+                                    <div className="titleBox">
+                                        <p>days</p>
+                                    </div>
+                                    <div className="numberBox">
+                                        <h1>{timeLeft.days}</h1>
+                                    </div>
+                                </div>
+                                <div className="spacer">:</div>
+                                <div className="timerBox">
+                                    <div className="titleBox">
+                                        <p>hours</p>
+                                    </div>
+                                    <div className="numberBox">
+                                        <h1>{timeLeft.hours}</h1>
+                                    </div>
+                                </div>
+                                <div className="spacer">:</div>
+                                <div className="timerBox">
+                                    <div className="titleBox">
+                                        <p>min</p>
+                                    </div>
+                                    <div className="numberBox">
+                                        <h1>{timeLeft.minutes}</h1>
+                                    </div>
+                                </div>
+                                <div className="spacer">:</div>
+                                <div className="timerBox">
+                                    <div className="titleBox">
+                                        <p>sec</p>
+                                    </div>
+                                    <div className="numberBox">
+                                        <h1>{timeLeft.seconds}</h1>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div className="clockInfoBox">
-                            <p>Info: {clock.description}</p>
+                            <p>Info:</p>
+                            <div className="clockDescription">{clock.description}</div>
                             <p>Address: {clock.address}</p>
                             <p>Start: {clock.startLat}, {clock.startLong}</p>
                             <p>End: {clock.endLat}, {clock.endLong}</p>
                         </div>
                     </div>
                     <div className="tagParent">
-                        {clock.supplies &&
+                        {clock.supplies.length ?
                             <div>
-                                <p>{clock.supplies.food}</p>
-                                <p>{clock.supplies.water}</p>
+                                <p>Food: {clock.supplies[0].food}</p>
+                                <p>Water: {clock.supplies[0].water}</p>
+                                <p>Temperature: {clock.supplies[0].temp}</p>
+                                <p>Shelter: {clock.supplies[0].shelter}</p>
+                                <p>Tools: {clock.supplies[0].tools}</p>
                             </div>
-                        }
+                        : <p>No Supplies</p>}
                     </div>
                     {(form !== 'addSupplies') && <button onClick={e => dispatch(setFormThunk('addSupplies'))}>Add Supplies</button>}
                     {(form === 'addSupplies') && <button onClick={e => dispatch(setFormThunk(false))}>Cancel Supplies</button>}

@@ -3,6 +3,8 @@ import React, { useState } from 'react'
 import { createClockThunk, getClockThunk } from '../../store/clock'
 import { setFormThunk } from '../../store/form'
 
+import './ClockForm.css'
+
 function CreateClockForm(){
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
@@ -59,7 +61,7 @@ function CreateClockForm(){
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="clockForm">
                 <h2>Create a DeathClock</h2>
                 <p>The clock is created and activated on form submission. Please cancel
                     the clock as soon as you are being safe again. On running down to 0,
@@ -68,7 +70,9 @@ function CreateClockForm(){
                 <ul>
                     {errors.map((error, index) => <li key={index}>{error}</li>)}
                 </ul>
+                <label>Title</label>
                 <input
+                    className="clockFormInput"
                     type="text"
                     placeholder="Title your adventure."
                     required
@@ -76,14 +80,18 @@ function CreateClockForm(){
                     onChange={e => setTitle(e.target.value)}
                 >
                 </input>
+                <label>Description</label>
                 <textarea
+                    className="clockFormInput"
                     type="textarea"
                     placeholder="Describe your adventure. Be specific, in case of trouble."
                     required
                     value={description}
                     onChange={e => setDescription(e.target.value)}
                 />
+                <label>Risk Involved</label>
                 <select
+                    className="clockFormInput"
                     onChange={e => setDanger(e.target.value)}
                     value={danger}
                 >
@@ -93,7 +101,9 @@ function CreateClockForm(){
                     <option value='4'>4 - Entering the Danger Zone</option>
                     <option value='5'>5 - I am Danger</option>
                 </select>
+                <label>What time should you be done?</label>
                 <input 
+                    className="clockFormInput"
                     type="datetime-local" 
                     value={endDate}
                     onChange={e => setEndDate(e.target.value)}
@@ -101,14 +111,18 @@ function CreateClockForm(){
                     max="2030-06-14T00:00"
                 >
                 </input>
+                <label>Optional Address</label>
                 <input
+                    className="clockFormInput"
                     type="text"
                     placeholder="(Optional) List an address for your adventure."
                     value={address}
                     onChange={e => setAddress(e.target.value)}
                 >
                 </input>
+                <label>Optional Starting Latitude</label>
                 <input
+                    className="clockFormInput"
                     type="number"
                     step=".00001"
                     placeholder="(Optional) Starting latitude."
@@ -116,7 +130,9 @@ function CreateClockForm(){
                     onChange={e => setStartLat(e.target.value)}
                 >
                 </input>
+                <label>Optional Starting Longitude</label>
                 <input
+                    className="clockFormInput"
                     type="number"
                     step=".00001"
                     placeholder="(Optional) Starting longitude."
@@ -124,7 +140,9 @@ function CreateClockForm(){
                     onChange={e => setStartLong(e.target.value)}
                 >
                 </input>
+                <label>Optional Destination Latitude</label>
                 <input
+                    className="clockFormInput"
                     type="number"
                     step=".00001"
                     placeholder="(Optional) Destination latitude."
@@ -132,7 +150,9 @@ function CreateClockForm(){
                     onChange={e => setEndLat(e.target.value)}
                 >
                 </input>
+                <label>Optional Destination Longitude</label>
                 <input
+                    className="clockFormInput"
                     type="number"
                     step=".00001"
                     placeholder="(Optional) Destination longitude."

@@ -1,8 +1,20 @@
 /* TODO Add site wide styles */
-body {
+h1, h2, h3 , h4 {
+    font-family: 'Girassol', cursive;
+}
+
+p {
     font-family: 'Open Sans Condensed', sans-serif;
 }
 
 button {
     font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 100%;
+    background-color: black;
+    color: grey;
+    box-sizing: border-box;
+    border: 2px solid grey;
+    padding: 5px;
+    border-radius: 5px;
+    margin: 10px;
 }

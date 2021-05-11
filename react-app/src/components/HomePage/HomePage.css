@@ -1,0 +1,13 @@
+.HomePageParent {
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.sideBar {
+    width: 15%;
+}
+
+.mainBox {
+    width: 85%;
+}
