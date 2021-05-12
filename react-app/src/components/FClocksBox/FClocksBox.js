@@ -13,16 +13,12 @@ function FClocksBox(){
     const friendClocks = useSelector(state => state.friendClock)
     const allUsers = Object.values(useSelector(state => state.users))
 
-    console.log('ALLUSERS', allUsers)
-
     let FriendClockBox = null;
     if (friendClocks.clocks){
         const clocks = friendClocks.clocks.filter(clock => user.followers.includes(clock.userId))
-        console.log('CLOCKS', clocks)
 
         FriendClockBox = clocks.map(clock => {
             const thisUser = allUsers.filter(user => user.id == clock.userId)[0]
-            console.log('ThisUser', thisUser)
             const props = {clock, thisUser}
             return (
                 <FBox props={props} />

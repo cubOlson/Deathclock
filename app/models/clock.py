@@ -8,7 +8,7 @@ class Clock(db.Model):
     title = db.Column(db.String(100), nullable = False)
     description = db.Column(db.String(1000), nullable = False)
     danger = db.Column(db.Integer, nullable = False)
-    endDate = db.Column(db.DateTime, nullable = False)
+    endDate = db.Column(db.String, nullable = False)
     address = db.Column(db.String(255))
     startLat = db.Column(db.Float)
     startLong = db.Column(db.Float)

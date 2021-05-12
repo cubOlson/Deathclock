@@ -6,13 +6,8 @@ import clockImage from '../../images/ClockTimer.gif'
 import './FBox.css'
 
 function FBox(props){
-    console.log('PROPS', props)
     const clock = props.props.clock
     const user = props.props.thisUser
-
-    console.log('CLOCK', clock)
-    console.log('USER', user)
-
 
     const calculateTimeLeft = () => {
         let endTime = +new Date(clock.endDate)

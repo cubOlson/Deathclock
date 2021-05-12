@@ -4,6 +4,8 @@ import { getClockThunk } from '../../store/clock'
 import { setFormThunk, getFormThunk } from '../../store/form'
 import { useDispatch, useSelector } from 'react-redux'
 
+import './ClockForm.css'
+
 function CreateSupplyForm(props){
     const clock = props.clock
     const user = useSelector(state => state.session.user)
@@ -46,13 +48,14 @@ function CreateSupplyForm(props){
 
     return (
         <div>
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={handleSubmit} className="clockForm">
                 <h2>Add Supplies</h2>
                 <p> All fields are optional, but will help your friends in case of emergency.</p>
                 <ul>
                     {errors.map((error, index) => <li key={index}>{error}</li>)}
                 </ul>
                 <input
+                    className="clockFormInput"
                     type="text"
                     placeholder="How long will your food last?"
                     value={food}
@@ -60,6 +63,7 @@ function CreateSupplyForm(props){
                 >
                 </input>
                 <input
+                    className="clockFormInput"
                     type="text"
                     placeholder="How long will your water last?"
                     value={water}
@@ -67,6 +71,7 @@ function CreateSupplyForm(props){
                 >
                 </input>
                 <input
+                    className="clockFormInput"
                     type="text"
                     placeholder="What temperature range are you dressed for?"
                     value={temp}
@@ -74,6 +79,7 @@ function CreateSupplyForm(props){
                 >
                 </input>
                 <input
+                    className="clockFormInput"
                     type="text"
                     placeholder="Do you have access to shelter?"
                     value={shelter}
@@ -81,6 +87,7 @@ function CreateSupplyForm(props){
                 >
                 </input>
                 <textarea
+                    className="clockFormInput"
                     placeholder="Do you have tools to help you?"
                     value={tools}
                     onChange={e => setTools(e.target.value)}

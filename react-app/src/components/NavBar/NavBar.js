@@ -12,12 +12,10 @@ const NavBar = () => {
   return (
     <nav className="navParent">
       <div className="buttonParent">
-        <div className="logo">
-          <NavLink to="/" exact={true} activeClassName="active">
-            <img src={logo} className="navLogo"/>
-          </NavLink>
+        <NavLink to="/" exact={true} activeClassName="active" className="logo">
+          <img src={logo} className="navLogo"/>
           <h1>DeathClock</h1>
-        </div>
+        </NavLink>
         { !user ?
           <div>
             <NavLink to="/login" exact={true} className="button" activeClassName="active">

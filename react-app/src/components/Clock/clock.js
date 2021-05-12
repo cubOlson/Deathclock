@@ -6,24 +6,29 @@ import SupplyForm from '../SupplyForm/SupplyForm'
 
 import './clock.css'
 import clockImage from '../../images/ClockTimer.gif'
+import alarmImage from '../../images/ALARM.gif'
 
 function Clock(props){
     const dispatch = useDispatch()
     const clock = props.clock;
     const user = useSelector(state => state.session.user)
     const form = useSelector(state => state.form)
-
-    console.log('SUPPLIES', clock.supplies)
     
     let userId
     if (user) userId = user.id
 
+    let theImage = clockImage
     
     const calculateTimeLeft = () => {
-        let endTime = +new Date(clock.endDate)
-        let now = +new Date()
+        let endTime = new Date(clock.endDate)
+        let now = new Date()
         const difference = endTime - now
+        console.log('DIFFERENCE', difference)
         let timeLeft = {}
+
+        console.log('END DATE', clock.endDate)
+        console.log('ENDTIME', endTime)
+        console.log('NOW', now)
 
         if (difference > 0) {
             timeLeft = {
@@ -32,6 +37,14 @@ function Clock(props){
               minutes: Math.floor((difference / 1000 / 60) % 60),
               seconds: Math.floor((difference / 1000) % 60)
           };
+        } else {
+            timeLeft = {
+                days: 0,
+                hours: 0,
+                minutes: 0,
+                seconds: 0
+            }
+            theImage = alarmImage;
         }
         return timeLeft;
     }
@@ -60,7 +73,7 @@ function Clock(props){
             {clock ?
                 <div className="clockParent">
                     <div className="timerParent">
-                        <img src={clockImage} className="clockImage"/>
+                        <img src={theImage} className="clockImage"/>
                         <div className="titleFix">
                             <h1>{clock.title}</h1>
                             <div className="timerFix">

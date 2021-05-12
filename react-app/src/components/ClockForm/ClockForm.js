@@ -14,7 +14,7 @@ function CreateClockForm(){
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
     const [danger, setDanger] = useState(1)
-    const [endDate, setEndDate] = useState("")
+    const [endDate, setEndDate] = useState(new Date())
     const [address, setAddress] = useState("")
     const [startLat, setStartLat] = useState(0)
     const [startLong, setStartLong] = useState(0)
@@ -26,12 +26,14 @@ function CreateClockForm(){
         e.preventDefault()
         setErrors([])
         dispatch(setFormThunk(false))
+
+        console.log('HEEEERE UTC', new Date(endDate).toISOString())
         const payload = {
             userId,
             title,
             description,
             danger,
-            endDate,
+            endDate: new Date(endDate).toISOString(),
             address,
             startLat,
             startLong,
@@ -57,7 +59,7 @@ function CreateClockForm(){
         userId = user.id
     }
 
-    const today = new Date().toISOString()
+    const today = new Date()
 
     return (
         <div>

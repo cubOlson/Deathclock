@@ -1,6 +1,8 @@
 .navParent {
     width: 100%;
-    height: 125px;
+    position: sticky;
+    top: 0;
+    background-color: white;
 }
 
 .logo{
@@ -8,6 +10,17 @@
     flex-direction: row;
     align-items: center;
     font-size: 200%;
+    text-decoration: none;
+    box-sizing: border-box;
+    border-left: 2px dashed black;
+    border-bottom: 2px dashed black;
+    margin: 10px;
+    color: black;
+}
+
+.logo h1 {
+    font-size: 300%;
+    margin: 0px;
 }
 
 .navLogo {
@@ -16,7 +29,7 @@
 
 .buttonParent {
     display: flex;
-    justify-content: space-around;
+    justify-content: flex-start;
     align-items: center;
     width: 95%;
 }

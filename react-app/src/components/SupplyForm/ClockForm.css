@@ -1,0 +1,16 @@
+.clockForm {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border: 2px dashed black;
+    padding: 10px;
+}
+
+.clockFormInput {
+    box-sizing: border-box;
+    border: 1px solid black;
+    margin: 5px;
+    background-color: black;
+    padding: 5px;
+    color: grey;
+}
