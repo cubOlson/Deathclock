@@ -21,19 +21,19 @@ const NavBar = () => {
             <NavLink to="/login" exact={true} className="button" activeClassName="active">
               Login
             </NavLink>
-            <NavLink to="/sign-up" exact={true} activeClassName="active">
+            <NavLink to="/sign-up" exact={true} className="button" activeClassName="active">
               Sign Up
             </NavLink>
           </div>
         : <div className="welcome"> Logged in as "{user.username}"!</div>}
-        <div>
-          <NavLink to="/friendList" exact={true} className="button" activeClassName="active">
-            Friends
-          </NavLink>
-        </div>
-        <div>
-          <LogoutButton className="welcome"/>
-        </div>
+        { user ?
+          <div>
+            <NavLink to="/friendList" exact={true} className="button" activeClassName="active">
+              Friends
+            </NavLink>
+            <LogoutButton className="welcome"/>
+          </div>
+        : null}
       </div>
     </nav>
   );

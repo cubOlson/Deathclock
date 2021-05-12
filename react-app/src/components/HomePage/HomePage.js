@@ -33,12 +33,12 @@ function Home(){
         <div className="HomePageParent">
             <FClocksBox className="sideBar"/> 
             <div className="mainBox">
+                {!clock.id && <button onClick={e => dispatch(setFormThunk(true))}>Create New Clock</button>}
                 {clock.id ?
                     <div>
                         <Clock clock={clock}/>
                     </div>
-                : null}
-                {!clock.id && <button onClick={e => dispatch(setFormThunk(true))}>Create New Clock</button>}
+                : <h2>You do not have an active clock.</h2>}
                 {(form === true) && <button onClick={e => dispatch(setFormThunk(false))}>Cancel Clock</button>}
                 {(form === true) && <ClockForm />}
             </div>
