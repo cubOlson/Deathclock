@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllUsers } from '../../store/user'
 import SingleUser from '../SingleUser/SingleUser'
 
+import './UserFollow.css'
+
 function UserFollow() {
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.session.user)
@@ -39,13 +41,13 @@ function UserFollow() {
     return (
         <div>
             {users.length > 0 ?
-            <div>
-                <div>
-                    <p>Followed Users</p>
+            <div className="allUserBox">
+                <div className="filteredUserBox">
+                    <h1>Followed Users</h1>
                     {followBox}
                 </div>
-                <div>
-                    <p>All Users</p>
+                <div className="filteredUserBox">
+                    <h1>All Users</h1>
                     {userBox}
                 </div>
             </div>

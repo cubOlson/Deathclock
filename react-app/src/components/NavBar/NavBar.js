@@ -27,12 +27,12 @@ const NavBar = () => {
           </div>
         : <div className="welcome"> Logged in as "{user.username}"!</div>}
         <div>
-          <NavLink to="/users" exact={true} className="button" activeClassName="active">
-            Profile (CREATE)
+          <NavLink to="/friendList" exact={true} className="button" activeClassName="active">
+            Friends
           </NavLink>
         </div>
-        <div className="button">
-          <LogoutButton />
+        <div>
+          <LogoutButton className="welcome"/>
         </div>
       </div>
     </nav>

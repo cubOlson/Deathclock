@@ -2,6 +2,8 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { followUserThunk, unfollowUserThunk } from '../../store/user'
 
+import './SingleUser.css'
+
 function SingleUser(props){
     const dispatch = useDispatch()
     const user = props.user;
@@ -22,9 +24,11 @@ function SingleUser(props){
     }
 
     return (
-        <div>
-            <p>{user.username}</p>
-            <p>{user.bio}</p>
+        <div className="singleUserBox">
+            <div>
+                <h2>{user.username}</h2>
+                <p>{user.bio}</p>
+            </div>
             {!check ?
                 <button onClick={e => handleAddFollow(e, user)}>Follow User</button>
             : <button onClick={e => handleRemoveFollow(e, user)}>Unfollow User</button>}

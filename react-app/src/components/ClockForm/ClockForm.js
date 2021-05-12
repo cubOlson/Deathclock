@@ -109,8 +109,7 @@ function CreateClockForm(){
                     type="datetime-local" 
                     value={endDate}
                     onChange={e => setEndDate(e.target.value)}
-                    min={today} 
-                    max="2030-06-14T00:00"
+                    required
                 >
                 </input>
                 <label>Optional Address</label>

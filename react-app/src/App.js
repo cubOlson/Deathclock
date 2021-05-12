@@ -53,7 +53,7 @@ function App() {
           <HomePage />
         </ProtectedRoute>
 
-        <ProtectedRoute path="/userTest" exact={true} >
+        <ProtectedRoute path="/friendList" exact={true} >
           <UserFollow />
         </ProtectedRoute>
 

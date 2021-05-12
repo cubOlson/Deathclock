@@ -1,0 +1,8 @@
+.singleUserBox {
+    display: flex;
+    flex-direction: column;
+    box-sizing: border-box;
+    border: 2px dashed black;
+    align-items: center;
+    width: 100%;
+}
