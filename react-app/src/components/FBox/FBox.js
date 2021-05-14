@@ -32,6 +32,11 @@ function FBox(props){
                 seconds: 0
             }
             theImage = alarmImage;
+
+            if(user){
+                const heyo = document.getElementById(user.username)
+                if (heyo) heyo.className = 'FlashFClockParent'
+            }
         }
         return timeLeft;
     }
@@ -47,18 +52,22 @@ function FBox(props){
 
 
     return (
-        <div className="FClockParent">
-            <div className="FClockTitle">
-                {user && <h2>{user.username}</h2>}
-                <p>{clock.title}</p>
-                <img src={theImage} className="FClockImage"/>
+        <div>
+            {user ?
+            <div className="FClockParent" id={user.username}>
+                <div className="FClockTitle">
+                    {user && <h2>{user.username}</h2>}
+                    <p>{clock.title}</p>
+                    <img src={theImage} className="FClockImage"/>
+                </div>
+                <div className="FClockInfo">
+                    <p>{timeLeft.days} :</p>
+                    <p> {timeLeft.hours} :</p>
+                    <p> {timeLeft.minutes} :</p>
+                    <p> {timeLeft.seconds}</p>
+                </div>
             </div>
-            <div className="FClockInfo">
-                <p>{timeLeft.days} :</p>
-                <p> {timeLeft.hours} :</p>
-                <p> {timeLeft.minutes} :</p>
-                <p> {timeLeft.seconds}</p>
-            </div>
+            : <p>Loading...</p>}
         </div>
     )
 }
