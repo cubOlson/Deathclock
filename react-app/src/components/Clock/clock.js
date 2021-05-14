@@ -23,12 +23,7 @@ function Clock(props){
         let endTime = new Date(clock.endDate)
         let now = new Date()
         const difference = endTime - now
-        console.log('DIFFERENCE', difference)
         let timeLeft = {}
-
-        console.log('END DATE', clock.endDate)
-        console.log('ENDTIME', endTime)
-        console.log('NOW', now)
 
         if (difference > 0) {
             timeLeft = {
