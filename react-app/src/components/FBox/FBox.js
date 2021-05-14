@@ -54,19 +54,21 @@ function FBox(props){
     return (
         <div>
             {user ?
-            <div className="FClockParent" id={user.username}>
-                <div className="FClockTitle">
-                    {user && <h2>{user.username}</h2>}
-                    <p>{clock.title}</p>
-                    <img src={theImage} className="FClockImage"/>
+            <a href={`/users/${user.id}`}>
+                <div className="FClockParent" id={user.username}>
+                    <div className="FClockTitle">
+                        {user && <h2>{user.username}</h2>}
+                        <p>{clock.title}</p>
+                        <img src={theImage} className="FClockImage"/>
+                    </div>
+                    <div className="FClockInfo">
+                        <p>{timeLeft.days} :</p>
+                        <p> {timeLeft.hours} :</p>
+                        <p> {timeLeft.minutes} :</p>
+                        <p> {timeLeft.seconds}</p>
+                    </div>
                 </div>
-                <div className="FClockInfo">
-                    <p>{timeLeft.days} :</p>
-                    <p> {timeLeft.hours} :</p>
-                    <p> {timeLeft.minutes} :</p>
-                    <p> {timeLeft.seconds}</p>
-                </div>
-            </div>
+            </a>
             : <p>Loading...</p>}
         </div>
     )

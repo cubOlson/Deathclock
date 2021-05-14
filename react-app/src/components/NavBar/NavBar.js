@@ -16,24 +16,24 @@ const NavBar = () => {
           <img src={logo} className="navLogo"/>
           <h1>DeathClock</h1>
         </NavLink>
-        { !user ?
-          <div>
-            <NavLink to="/login" exact={true} className="button" activeClassName="active">
-              Login
-            </NavLink>
-            <NavLink to="/sign-up" exact={true} className="button" activeClassName="active">
-              Sign Up
-            </NavLink>
-          </div>
-        : <div className="welcome"> Logged in as "{user.username}"!</div>}
-        { user ?
-          <div>
-            <NavLink to="/friendList" exact={true} className="button" activeClassName="active">
-              Friends
-            </NavLink>
-            <LogoutButton className="welcome"/>
-          </div>
-        : null}
+          { !user ?
+            <div>
+              <NavLink to="/login" exact={true} className="button" activeClassName="active">
+                Login
+              </NavLink>
+              <NavLink to="/sign-up" exact={true} className="button" activeClassName="active">
+                Sign Up
+              </NavLink>
+            </div>
+          : <div className="welcome"> Logged in as "{user.username}"!</div>}
+          { user ?
+            <div>
+              <NavLink to="/friendList" exact={true} className="button" activeClassName="active">
+                Friends
+              </NavLink>
+              <LogoutButton className="welcome"/>
+            </div>
+          : null}
       </div>
     </nav>
   );
