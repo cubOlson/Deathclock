@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
 
 import clockImage from '../../images/ClockTimer.gif'
+import alarmImage from '../../images/ALARM.gif'
 
 import './FBox.css'
 
 function FBox(props){
     const clock = props.props.clock
     const user = props.props.thisUser
+
+    let theImage = clockImage
 
     const calculateTimeLeft = () => {
         let endTime = +new Date(clock.endDate)
@@ -22,6 +24,14 @@ function FBox(props){
               minutes: Math.floor((difference / 1000 / 60) % 60),
               seconds: Math.floor((difference / 1000) % 60)
           };
+        } else {
+            timeLeft = {
+                days: 0,
+                hours: 0,
+                minutes: 0,
+                seconds: 0
+            }
+            theImage = alarmImage;
         }
         return timeLeft;
     }
@@ -41,7 +51,7 @@ function FBox(props){
             <div className="FClockTitle">
                 {user && <h2>{user.username}</h2>}
                 <p>{clock.title}</p>
-                <img src={clockImage} className="FClockImage"/>
+                <img src={theImage} className="FClockImage"/>
             </div>
             <div className="FClockInfo">
                 <p>{timeLeft.days} :</p>

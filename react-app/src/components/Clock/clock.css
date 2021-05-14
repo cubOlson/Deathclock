@@ -40,6 +40,23 @@
     align-items: center;
 }
 
+.FlashTimerParent {
+    display: flex;
+    box-sizing: border-box;
+    border: 3px solid black;
+    max-height: 65%;
+    width: 100%;
+    justify-content: flex-start;
+    align-items: center;
+    background: red;
+    animation: flash .5s infinite;
+}
+  
+@keyframes flash {
+    from {background-color: red;}
+    to {background-color: white;}
+}
+
 .spacer {
     width: 20px;
     box-sizing: border-box;

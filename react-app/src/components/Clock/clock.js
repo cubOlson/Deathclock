@@ -40,6 +40,10 @@ function Clock(props){
                 seconds: 0
             }
             theImage = alarmImage;
+
+                const heyo = document.getElementById('userClock')
+                if (heyo) heyo.className = 'FlashTimerParent'
+
         }
         return timeLeft;
     }
@@ -67,7 +71,7 @@ function Clock(props){
         <div className="componentParent">
             {clock ?
                 <div className="clockParent">
-                    <div className="timerParent">
+                    <div className="timerParent" id = "userClock">
                         <img src={theImage} className="clockImage"/>
                         <div className="titleFix">
                             <h1>{clock.title}</h1>
