@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import UserEditForm from './auth/UserEditForm'
 
 function User() {
   const [user, setUser] = useState({});
+  const [check, setCheck] = useState(false)
   // Notice we use useParams here instead of getting the params
   // From props.
   const { userId }  = useParams();
@@ -23,17 +25,37 @@ function User() {
   }
 
   return (
-    <ul>
-      <li>
-        <strong>User Id</strong> {userId}
-      </li>
-      <li>
-        <strong>Username</strong> {user.username}
-      </li>
-      <li>
-        <strong>Email</strong> {user.email}
-      </li>
-    </ul>
+    <div>
+      {!check ?
+        <ul>
+          <li>
+            <strong>User Id</strong> {userId}
+          </li>
+          <li>
+            <strong>Username</strong> {user.username}
+          </li>
+          <li>
+            <strong>Full Name</strong> {user.fullname ? user.fullname : null}
+          </li>
+          <li>
+            <strong>Bio</strong> {user.bio ? user.bio : null}
+          </li>
+          <li>
+            <strong>Phone Number</strong> {user.phoneNumber ? user.phoneNumber : null}
+          </li>
+          <li>
+            <strong>Emergency Contact Name</strong> {user.ecname ? user.ecname : null}
+          </li>
+          <li>
+            <strong>Emergency Contact Phone Number</strong> {user.ecPhone ? user.ecPhone : null}
+          </li>
+          <li>
+            <strong>Email</strong> {user.email}
+          </li>
+          <button onClick={e => setCheck(true)}>Edit</button>
+        </ul>
+      : <div><UserEditForm /><button onClick={e => setCheck(false)}>Cancel</button></div>}
+    </div>
   );
 }
 export default User;

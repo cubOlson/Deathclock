@@ -24,7 +24,7 @@ function SingleUser(props){
     }
 
     return (
-        <div className="singleUserBox">
+        <a href={check ? `/users/${user.id}` : '/friendList'} className="singleUserBox">
             <div>
                 <h2>{user.username}</h2>
                 <p>{user.bio}</p>
@@ -32,7 +32,7 @@ function SingleUser(props){
             {!check ?
                 <button onClick={e => handleAddFollow(e, user)}>Follow User</button>
             : <button onClick={e => handleRemoveFollow(e, user)}>Unfollow User</button>}
-        </div>
+        </a>
     )
 }
 

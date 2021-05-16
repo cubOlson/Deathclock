@@ -1,27 +1,29 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux"
-import { Redirect } from 'react-router-dom';
-import { signUp } from '../../store/session';
+import { editUserThunk } from '../../store/session';
 
 import './authForm.css'
 
-const SignUpForm = ({authenticated, setAuthenticated}) => {
+const UserEditForm = ({authenticated, setAuthenticated}) => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.session.user)
-  const [username, setUsername] = useState("");
-  const [fullname, setFullname] = useState("");
-  const [phoneNumber, setPhoneNumber] = useState("");
-  const [ecname, setEcname] = useState("");
-  const [ecPhone, setEcPhone] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState("");
 
-  const onSignUp = async (e) => {
-    e.preventDefault();
-    if (password === repeatPassword) {
-      await dispatch(signUp(username, fullname, phoneNumber, ecname, ecPhone, email, password));
-    }
+
+  const [username, setUsername] = useState(user.username);
+  const [fullname, setFullname] = useState(user.fullname);
+  const [phoneNumber, setPhoneNumber] = useState(user.phoneNumber);
+  const [ecname, setEcname] = useState(user.ecname);
+  const [ecPhone, setEcPhone] = useState(user.ecPhone);
+  const [bio, setBio] = useState(user.bio);
+  const [email, setEmail] = useState(user.email);
+
+  
+  if (!user) {
+    return null
+}
+
+  const onEdit = async (e) => {
+    await dispatch(editUserThunk(username, fullname, phoneNumber, ecname, ecPhone, bio, email));
   };
 
   const updateUsername = (e) => {
@@ -44,25 +46,17 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
     setEcPhone(e.target.value);
   };
 
+  const updateBio = (e) => {
+    setBio(e.target.value);
+  };
+
   const updateEmail = (e) => {
     setEmail(e.target.value);
   };
 
-  const updatePassword = (e) => {
-    setPassword(e.target.value);
-  };
-
-  const updateRepeatPassword = (e) => {
-    setRepeatPassword(e.target.value);
-  };
-
-  if (user) {
-    return <Redirect to="/" />;
-  }
-
   return (
     <div className="authFormParent">
-      <form onSubmit={onSignUp} className="authForm">
+      <form onSubmit={onEdit} className="authForm">
           <label>User Name</label>
           <input
             className="authInput"
@@ -76,7 +70,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           <input
             className="authInput"
             type="text"
-            name="username"
+            name="fullname"
             onChange={updateFullname}
             value={fullname}
           ></input>
@@ -84,7 +78,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           <input
             className="authInput"
             type="text"
-            name="username"
+            name="phoneNumber"
             onChange={updatePhoneNumber}
             value={phoneNumber}
             required
@@ -93,7 +87,7 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           <input
             className="authInput"
             type="text"
-            name="username"
+            name="ecname"
             onChange={updateEcname}
             value={ecname}
           ></input>
@@ -101,10 +95,18 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
           <input
             className="authInput"
             type="text"
-            name="username"
+            name="ecPhone"
             onChange={updateEcPhone}
             value={ecPhone}
             required
+          ></input>
+          <label>Short Bio</label>
+          <input
+            className="authInput"
+            type="text"
+            name="bio"
+            onChange={updateBio}
+            value={bio}
           ></input>
           <label>Email</label>
           <input
@@ -115,28 +117,10 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
             value={email}
             required
           ></input>
-          <label>Password</label>
-          <input
-            className="authInput"
-            type="password"
-            name="password"
-            onChange={updatePassword}
-            value={password}
-            required
-          ></input>
-          <label>Repeat Password</label>
-          <input
-            className="authInput"
-            type="password"
-            name="repeat_password"
-            onChange={updateRepeatPassword}
-            value={repeatPassword}
-            required={true}
-          ></input>
-        <button type="submit">Sign Up</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
 };
 
-export default SignUpForm;
+export default UserEditForm;

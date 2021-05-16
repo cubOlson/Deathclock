@@ -31,6 +31,9 @@ const NavBar = () => {
               <NavLink to="/friendList" exact={true} className="button" activeClassName="active">
                 Friends
               </NavLink>
+              <NavLink to={`/users/${user.id}`} exact={true} className="button" activeClassName="active">
+                Profile
+              </NavLink>
               <LogoutButton className="welcome"/>
             </div>
           : null}
