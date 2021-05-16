@@ -9,6 +9,10 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   const dispatch = useDispatch()
   const user = useSelector(state => state.session.user)
   const [username, setUsername] = useState("");
+  const [fullname, setFullname] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const [ecname, setEcname] = useState("");
+  const [ecPhone, setEcPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -16,12 +20,28 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
   const onSignUp = async (e) => {
     e.preventDefault();
     if (password === repeatPassword) {
-      await dispatch(signUp(username, email, password));
+      await dispatch(signUp(username, fullname, phoneNumber, ecname, ecPhone, email, password));
     }
   };
 
   const updateUsername = (e) => {
     setUsername(e.target.value);
+  };
+
+  const updateFullname = (e) => {
+    setFullname(e.target.value);
+  };
+
+  const updatePhoneNumber = (e) => {
+    setPhoneNumber(e.target.value);
+  };
+
+  const updateEcname = (e) => {
+    setEcname(e.target.value);
+  };
+
+  const updateEcPhone = (e) => {
+    setEcPhone(e.target.value);
   };
 
   const updateEmail = (e) => {
@@ -50,6 +70,38 @@ const SignUpForm = ({authenticated, setAuthenticated}) => {
             name="username"
             onChange={updateUsername}
             value={username}
+          ></input>
+          <label>Full Name (optional)</label>
+          <input
+            className="authInput"
+            type="text"
+            name="username"
+            onChange={updateFullname}
+            value={fullname}
+          ></input>
+          <label>Phone Number</label>
+          <input
+            className="authInput"
+            type="text"
+            name="username"
+            onChange={updatePhoneNumber}
+            value={phoneNumber}
+          ></input>
+          <label>Emergency Contact Name (optional)</label>
+          <input
+            className="authInput"
+            type="text"
+            name="username"
+            onChange={updateEcname}
+            value={ecname}
+          ></input>
+          <label>Emergency Contact Phone Number</label>
+          <input
+            className="authInput"
+            type="text"
+            name="username"
+            onChange={updateEcPhone}
+            value={ecPhone}
           ></input>
           <label>Email</label>
           <input

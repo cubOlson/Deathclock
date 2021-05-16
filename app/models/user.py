@@ -13,6 +13,10 @@ class User(db.Model, UserMixin):
 
   id = db.Column(db.Integer, primary_key = True)
   username = db.Column(db.String(40), nullable = False, unique = True)
+  fullname = db.Column(db.String(100))
+  phoneNumber = db.Column(db.String(40), nullable = False, unique = True)
+  ecname = db.Column(db.String(40), nullable = False)
+  ecPhone = db.Column(db.String(40), nullable = False)
   email = db.Column(db.String(255), nullable = False, unique = True)
   hashed_password = db.Column(db.String(255), nullable = False)
   imageURL = db.Column(db.String(255))
@@ -60,6 +64,10 @@ class User(db.Model, UserMixin):
     return {
       "id": self.id,
       "username": self.username,
+      "fullname": self.fullname,
+      "phoneNumber": self.phoneNumber,
+      "ecname": self.ecname,
+      "ecPhone": self.ecPhone,
       "email": self.email,
       "imageURL": self.imageURL,
       "bio": self.bio,

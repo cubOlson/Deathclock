@@ -55,7 +55,7 @@ export const authenticate = () => async(dispatch) => {
   };
   
   
-  export const signUp = (username, email, password) => async(dispatch) => {
+  export const signUp = (username, fullname, phoneNumber, ecname, ecPhone, email, password) => async(dispatch) => {
     const response = await fetch("/api/auth/signup", {
       method: "POST",
       headers: {
@@ -63,6 +63,10 @@ export const authenticate = () => async(dispatch) => {
       },
       body: JSON.stringify({
         username,
+        fullname,
+        phoneNumber,
+        ecname,
+        ecPhone,
         email,
         password,
       }),
