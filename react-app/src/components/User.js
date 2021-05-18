@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { useSelector } from 'react-redux'
 import { useParams } from "react-router-dom";
 import UserEditForm from './auth/UserEditForm'
 
 function User() {
   const [user, setUser] = useState({});
   const [check, setCheck] = useState(false)
+  const currentUser = useSelector(state => state.session.user)
   // Notice we use useParams here instead of getting the params
   // From props.
   const { userId }  = useParams();
@@ -52,7 +54,8 @@ function User() {
           <li>
             <strong>Email</strong> {user.email}
           </li>
-          <button onClick={e => setCheck(true)}>Edit</button>
+          {currentUser.id==userId ? <button onClick={e => setCheck(true)}>Edit</button> : null}
+        
         </ul>
       : <div><UserEditForm /><button onClick={e => setCheck(false)}>Cancel</button></div>}
     </div>

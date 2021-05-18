@@ -1,6 +1,13 @@
+.signUpPage {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .authFormParent {
     display: flex;
     justify-content: center;
+    width: 50%;
 }
 
 .authForm {
@@ -8,9 +15,9 @@
     box-sizing: border-box;
     border: 2px dashed black;
     padding: 10px;
+    margin: 10px;
     flex-direction: column;
     align-items: flex-start;
-    width: 75%;
 }
 
 .authInput {
@@ -20,4 +27,13 @@
     padding: 5px;
     margin: 10px;
     color: grey;
+}
+
+.signUpInfo {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 90%;
+    text-align: center;
 }

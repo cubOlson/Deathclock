@@ -18,6 +18,13 @@ function Clock(props){
     if (user) userId = user.id
 
     let theImage = clockImage
+
+    const fixNumber = (val) => {
+        if(val < 10){
+            return `0${val}`
+        }
+        return val
+    }
     
     const calculateTimeLeft = () => {
         let endTime = new Date(clock.endDate)
@@ -81,7 +88,7 @@ function Clock(props){
                                         <p>days</p>
                                     </div>
                                     <div className="numberBox">
-                                        <h1>{timeLeft.days}</h1>
+                                        <h1>{fixNumber(timeLeft.days)}</h1>
                                     </div>
                                 </div>
                                 <div className="spacer">:</div>
@@ -90,7 +97,7 @@ function Clock(props){
                                         <p>hours</p>
                                     </div>
                                     <div className="numberBox">
-                                        <h1>{timeLeft.hours}</h1>
+                                        <h1>{fixNumber(timeLeft.hours)}</h1>
                                     </div>
                                 </div>
                                 <div className="spacer">:</div>
@@ -99,7 +106,7 @@ function Clock(props){
                                         <p>min</p>
                                     </div>
                                     <div className="numberBox">
-                                        <h1>{timeLeft.minutes}</h1>
+                                        <h1>{fixNumber(timeLeft.minutes)}</h1>
                                     </div>
                                 </div>
                                 <div className="spacer">:</div>
@@ -108,7 +115,7 @@ function Clock(props){
                                         <p>sec</p>
                                     </div>
                                     <div className="numberBox">
-                                        <h1>{timeLeft.seconds}</h1>
+                                        <h1>{fixNumber(timeLeft.seconds)}</h1>
                                     </div>
                                 </div>
                             </div>

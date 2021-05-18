@@ -4,6 +4,7 @@
     box-sizing: border-box;
     border: 2px dashed black;
     padding: 10px;
+    width: 50%;
 }
 
 .clockFormInput {
