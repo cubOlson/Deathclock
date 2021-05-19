@@ -5,6 +5,8 @@ import LogoutButton from '../auth/LogoutButton';
 
 import './navBar.css'
 import logo from '../../images/ALARM.gif'
+import PROFILE from '../../images/PROFILE.gif'
+import FRIENDS from '../../images/FRIENDS.gif'
 
 const NavBar = () => {
   const user = useSelector(state => state.session.user)
@@ -27,12 +29,14 @@ const NavBar = () => {
             </div>
           : <div className="welcome"> Logged in as "{user.username}"!</div>}
           { user ?
-            <div>
-              <NavLink to="/friendList" exact={true} className="button" activeClassName="active">
-                Friends
+            <div className="navBoxRight">
+              <NavLink to="/friendList" exact={true} className="navLink" activeClassName="active">
+                <img src={FRIENDS} alt="friends" className="navLinkImage"/>
+                <h2>FRIENDS</h2>
               </NavLink>
-              <NavLink to={`/users/${user.id}`} exact={true} className="button" activeClassName="active">
-                Profile
+              <NavLink to={`/users/${user.id}`} exact={true} className="navLink" activeClassName="active">
+                <img src={PROFILE} alt="friends" className="navLinkImage"/>
+                <h2>PROFILE</h2>
               </NavLink>
               <LogoutButton className="welcome"/>
             </div>

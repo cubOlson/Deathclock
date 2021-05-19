@@ -23,27 +23,36 @@
     margin: 0px;
 }
 
+.navBoxRight {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 30%;
+}
+
 .navLogo {
     height: 100px;
 }
 
+.navLink {
+    box-sizing: border-box;
+}
+
+.navLink h2 {
+    margin: 0px;
+    padding: 0px;
+}
+
+.navLinkImage {
+    width: 75px;
+}
+
 .buttonParent {
     display: flex;
-    justify-content: flex-start;
+    justify-content: space-between;
     align-items: center;
     width: 95%;
 }
-
-/* .button {
-    text-decoration: none;
-    box-sizing: border-box;
-    margin: 5px;
-    padding: 5px;
-    border-radius: 5px;
-    color: black;
-    border: 1px solid black;
-    margin-left: 200px;
-} */
 
 .welcome {
     box-sizing: border-box;
