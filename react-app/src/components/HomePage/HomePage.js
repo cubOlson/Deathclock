@@ -8,6 +8,11 @@ import { setFormThunk, getFormThunk } from '../../store/form'
 
 import './HomePage.css'
 
+import AngelList from '../../images/ANGELLISTLOGO.png'
+import GitHub from '../../images/GITHUBLOGO.png'
+import LinkedIn from '../../images/LINKEDINLOGO.png'
+
+
 function Home(){
     const dispatch = useDispatch()
     const clock = useSelector(state => state.clock)
@@ -43,14 +48,19 @@ function Home(){
             <div className="myInfoBox">
                 <h2>Programmer</h2>
                 <h1>Caleb "Cub" Olson</h1>
-                <div>
-                    <a href="https://github.com/cubOlson">Github</a>
-                </div>
-                <div>
-                    <a href="https://www.linkedin.com/in/caleb-olson-86a363ba/">LinkedIn</a>
-                </div>
-                <div>
-                    <a href="https://angel.co/u/cub-olson">AngelList</a>
+                <div className="goSideways">
+                    <a href="https://github.com/cubOlson" className="infoLogoBox">
+                        <img src={GitHub} alt="github" className="myInfoLogos"/>
+                        Github
+                    </a>
+                    <a href="https://www.linkedin.com/in/caleb-olson-86a363ba/" className="infoLogoBox">
+                        <img src={LinkedIn} alt="linkedin" className="myInfoLogos"/>
+                        LinkedIn
+                    </a>
+                    <a href="https://angel.co/u/cub-olson" className="infoLogoBox">
+                        <img src={AngelList} alt="angellist" className="myInfoLogos"/>
+                        AngelList
+                    </a>
                 </div>
             </div>
         </div>

@@ -11,6 +11,13 @@ function FBox(props){
 
     const [theImage, setTheImage] = useState(clockImage)
 
+    const fixNumber = (val) => {
+        if(val < 10){
+            return `0${val}`
+        }
+        return val
+    }
+
     const calculateTimeLeft = useCallback(() => {
         let endTime = +new Date(clock.endDate)
         let now = +new Date()
@@ -31,7 +38,8 @@ function FBox(props){
                 minutes: 0,
                 seconds: 0
             }
-            setTheImage(alarmImage)
+            
+            if (theImage !== alarmImage) setTheImage(alarmImage)
 
             if(user){
                 const heyo = document.getElementById(user.username)
@@ -39,7 +47,7 @@ function FBox(props){
             }
         }
         return timeLeft;
-    }, [clock.endDate, user])
+    }, [clock.endDate, user, theImage])
 
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
@@ -62,10 +70,10 @@ function FBox(props){
                         <img src={theImage} alt="Clock GIF" className="FClockImage"/>
                     </div>
                     <div className="FClockInfo">
-                        <p>{timeLeft.days} :</p>
-                        <p> {timeLeft.hours} :</p>
-                        <p> {timeLeft.minutes} :</p>
-                        <p> {timeLeft.seconds}</p>
+                        <p>{fixNumber(timeLeft.days)} :</p>
+                        <p> {fixNumber(timeLeft.hours)} :</p>
+                        <p> {fixNumber(timeLeft.minutes)} :</p>
+                        <p> {fixNumber(timeLeft.seconds)}</p>
                     </div>
                 </div>
             </a>

@@ -23,3 +23,24 @@
     margin: 10px;
     border: 2px dashed black;
 }
+
+.myInfoBox h1, .myInfoBox h2 {
+    margin: 0px;
+    padding: 0px;
+}
+
+.infoLogoBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.goSideways {
+    display: flex;
+}
+
+.myInfoLogos {
+    width: 75%;
+    box-sizing: border-box;
+    margin: 10px;
+}

@@ -34,7 +34,7 @@
     width: 95%;
 }
 
-.button {
+/* .button {
     text-decoration: none;
     box-sizing: border-box;
     margin: 5px;
@@ -43,7 +43,7 @@
     color: black;
     border: 1px solid black;
     margin-left: 200px;
-}
+} */
 
 .welcome {
     box-sizing: border-box;

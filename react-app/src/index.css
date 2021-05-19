@@ -24,3 +24,13 @@ a {
     text-decoration: none;
     color: black;
 }
+
+a:hover {
+    transform: translate(0, -10px);
+    transform: scale(1.05, 1.05);
+}
+
+button:hover {
+    transform: translate(0, -10px);
+    transform: scale(1.05, 1.05);
+}

@@ -2,6 +2,7 @@ import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getClockThunk, deleteClockThunk } from '../../store/clock'
 import { setFormThunk, getFormThunk } from '../../store/form'
+import { GoogleMap, LoadScript, Marker, InfoWindow } from '@react-google-maps/api';
 import SupplyForm from '../SupplyForm/SupplyForm'
 
 import './clock.css'
@@ -13,6 +14,8 @@ function Clock(props){
     const clock = props.clock;
     const user = useSelector(state => state.session.user)
     const form = useSelector(state => state.form)
+
+    const [selected, setSelected] = useState({})
 
     const [theImage, setTheImage] = useState(clockImage)
     
@@ -46,14 +49,15 @@ function Clock(props){
                 minutes: 0,
                 seconds: 0
             }
-            setTheImage(alarmImage)
 
+            if (theImage !== alarmImage) setTheImage(alarmImage)
+     
                 const heyo = document.getElementById('userClock')
                 if (heyo) heyo.className = 'FlashTimerParent'
 
         }
         return timeLeft;
-    }, [clock.endDate])
+    }, [clock.endDate, theImage])
 
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
@@ -73,6 +77,26 @@ function Clock(props){
         await dispatch(deleteClockThunk(clock.id))
         await dispatch(getClockThunk(userId))
     }
+
+    let location = null;
+    if (clock && user) {
+        if (clock.startLat !== 0 && clock.startLong !== 0) {
+        location = {
+            lat: clock.startLat,
+            lng: clock.startLong
+        }
+    }
+    }
+
+    const mapStyles = {
+        height: "200px",
+        width: "100%",
+    };
+    
+    const defaultCenter = {
+        lat: 42.434719, lng: -83.985001
+    }
+    
 
     return (
         <div className="componentParent">
@@ -121,13 +145,41 @@ function Clock(props){
                             </div>
                         </div>
                         <div className="clockInfoBox">
-                            <p>Info:</p>
-                            <div className="clockDescription">{clock.description}</div>
+                            <p>Info:
+                                <div className="clockDescription">{clock.description}</div>
+                            </p>
                             <p>Address: {clock.address}</p>
-                            <p>Start: {clock.startLat}, {clock.startLong}</p>
-                            <p>End: {clock.endLat}, {clock.endLong}</p>
                         </div>
                     </div>
+                    {location ? 
+                        <LoadScript
+                            googleMapsApiKey='AIzaSyAiEd7_jUnGgEA1n3RFdoJ1WnrCyDApSX4'>
+                            <GoogleMap
+                                mapContainerStyle={mapStyles}
+                                zoom={5}
+                                center={location ?
+                                  location
+                                : defaultCenter}
+                            >
+                                <Marker key={user.username} position={location} onClick={() => setSelected(clock)} />
+                                {selected.id &&
+                                  (
+                                    <InfoWindow
+                                      position={location}
+                                      clickable={true}
+                                      onCloseClick={() => setSelected({})}
+                                    >
+                                      <div>
+                                        <p>{user.username}</p>
+                                        <p>{selected.title}</p>
+                                      </div>
+                                    </InfoWindow>
+                                  )
+                                }
+                            </GoogleMap>
+
+                        </LoadScript>
+                    : <h2>{user.username} has not provided coordinates.</h2>}
                     <div className="tagParent">
                         {clock.supplies.length ?
                             <div>
