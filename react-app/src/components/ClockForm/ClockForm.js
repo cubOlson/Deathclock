@@ -8,8 +8,6 @@ import './ClockForm.css'
 function CreateClockForm(){
     const dispatch = useDispatch()
     const user = useSelector(state => state.session.user)
-    const clock = useSelector(state => state.clock)
-    const form = useSelector(state => state.form)
 
     const [title, setTitle] = useState("")
     const [description, setDescription] = useState("")
@@ -27,7 +25,6 @@ function CreateClockForm(){
         setErrors([])
         dispatch(setFormThunk(false))
 
-        console.log('HEEEERE UTC', new Date(endDate).toISOString())
         const payload = {
             userId,
             title,
@@ -43,7 +40,6 @@ function CreateClockForm(){
 
         await dispatch(createClockThunk(payload))
             .catch(async (res) => {
-                console.log('---------------', res)
                 const data = await res.json()
                 if (data && data.errors) setErrors(data.errors)
 
@@ -58,8 +54,6 @@ function CreateClockForm(){
     if (user){
         userId = user.id
     }
-
-    const today = new Date()
 
     return (
         <div>

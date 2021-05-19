@@ -54,7 +54,7 @@ export const createClockThunk = (clock) => async(dispatch) => {
 export const deleteClockThunk = (id) => async (dispatch) => {
     const response = await fetch(`/api/clock/${id}`, { method: "DELETE" })
     dispatch(deleteClock())
-    return null;
+    return response;
   }
 
 const initialState = {}

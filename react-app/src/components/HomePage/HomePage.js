@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import ClockForm from '../ClockForm/ClockForm'
 import Clock from '../Clock/clock'
@@ -14,8 +14,6 @@ function Home(){
     const user = useSelector(state => state.session.user)
     const form = useSelector(state => state.form)
 
-    console.log(clock)
-
     let userId
     if (user){
         userId = user.id
@@ -23,7 +21,7 @@ function Home(){
 
     useEffect(() => {
         dispatch(getClockThunk(userId))
-    }, [dispatch])
+    }, [dispatch, userId])
 
     useEffect(() => {
         dispatch(getFormThunk())
@@ -41,6 +39,19 @@ function Home(){
                 : <h2>You do not have an active clock.</h2>}
                 {(form === true) && <button onClick={e => dispatch(setFormThunk(false))}>Cancel Clock</button>}
                 {(form === true) && <ClockForm />}
+            </div>
+            <div className="myInfoBox">
+                <h2>Programmer</h2>
+                <h1>Caleb "Cub" Olson</h1>
+                <div>
+                    <a href="https://github.com/cubOlson">Github</a>
+                </div>
+                <div>
+                    <a href="https://www.linkedin.com/in/caleb-olson-86a363ba/">LinkedIn</a>
+                </div>
+                <div>
+                    <a href="https://angel.co/u/cub-olson">AngelList</a>
+                </div>
             </div>
         </div>
     )

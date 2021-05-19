@@ -4,14 +4,13 @@
     box-sizing: border-box;
     border: 2px dashed black;
     padding: 10px;
-    width: 50%;
 }
 
 .clockFormInput {
     box-sizing: border-box;
     border: 1px solid black;
     margin: 5px;
-    background-color: black;
+    /* background-color: black; */
     padding: 5px;
     color: grey;
 }

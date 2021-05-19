@@ -13,7 +13,7 @@ const NavBar = () => {
     <nav className="navParent">
       <div className="buttonParent">
         <NavLink to="/" exact={true} activeClassName="active" className="logo">
-          <img src={logo} className="navLogo"/>
+          <img src={logo} alt="Main Logo" className="navLogo"/>
           <h1>DeathClock</h1>
         </NavLink>
           { !user ?

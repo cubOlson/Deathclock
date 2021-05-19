@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import clockImage from '../../images/ClockTimer.gif'
 import alarmImage from '../../images/ALARM.gif'
@@ -9,9 +9,9 @@ function FBox(props){
     const clock = props.props.clock
     const user = props.props.thisUser
 
-    let theImage = clockImage
+    const [theImage, setTheImage] = useState(clockImage)
 
-    const calculateTimeLeft = () => {
+    const calculateTimeLeft = useCallback(() => {
         let endTime = +new Date(clock.endDate)
         let now = +new Date()
         const difference = endTime - now
@@ -31,7 +31,7 @@ function FBox(props){
                 minutes: 0,
                 seconds: 0
             }
-            theImage = alarmImage;
+            setTheImage(alarmImage)
 
             if(user){
                 const heyo = document.getElementById(user.username)
@@ -39,7 +39,7 @@ function FBox(props){
             }
         }
         return timeLeft;
-    }
+    }, [clock.endDate, user])
 
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
@@ -48,7 +48,7 @@ function FBox(props){
             setTimeLeft(calculateTimeLeft());
         }, 1000);
         return () => clearTimeout(timer);
-    }, [timeLeft])
+    }, [timeLeft, calculateTimeLeft])
 
 
     return (
@@ -59,7 +59,7 @@ function FBox(props){
                     <div className="FClockTitle">
                         {user && <h2>{user.username}</h2>}
                         <p>{clock.title}</p>
-                        <img src={theImage} className="FClockImage"/>
+                        <img src={theImage} alt="Clock GIF" className="FClockImage"/>
                     </div>
                     <div className="FClockInfo">
                         <p>{timeLeft.days} :</p>

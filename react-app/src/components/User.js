@@ -54,7 +54,7 @@ function User() {
           <li>
             <strong>Email</strong> {user.email}
           </li>
-          {currentUser.id==userId ? <button onClick={e => setCheck(true)}>Edit</button> : null}
+          {currentUser.id===parseInt(userId) ? <button onClick={e => setCheck(true)}>Edit</button> : null}
         
         </ul>
       : <div><UserEditForm /><button onClick={e => setCheck(false)}>Cancel</button></div>}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getClockThunk, deleteClockThunk } from '../../store/clock'
 import { setFormThunk, getFormThunk } from '../../store/form'
@@ -13,11 +13,11 @@ function Clock(props){
     const clock = props.clock;
     const user = useSelector(state => state.session.user)
     const form = useSelector(state => state.form)
+
+    const [theImage, setTheImage] = useState(clockImage)
     
     let userId
     if (user) userId = user.id
-
-    let theImage = clockImage
 
     const fixNumber = (val) => {
         if(val < 10){
@@ -26,7 +26,7 @@ function Clock(props){
         return val
     }
     
-    const calculateTimeLeft = () => {
+    const calculateTimeLeft = useCallback(() => {
         let endTime = new Date(clock.endDate)
         let now = new Date()
         const difference = endTime - now
@@ -46,14 +46,14 @@ function Clock(props){
                 minutes: 0,
                 seconds: 0
             }
-            theImage = alarmImage;
+            setTheImage(alarmImage)
 
                 const heyo = document.getElementById('userClock')
                 if (heyo) heyo.className = 'FlashTimerParent'
 
         }
         return timeLeft;
-    }
+    }, [clock.endDate])
 
     const [timeLeft, setTimeLeft] = useState(calculateTimeLeft());
 
@@ -62,7 +62,7 @@ function Clock(props){
             setTimeLeft(calculateTimeLeft());
         }, 1000);
         return () => clearTimeout(timer);
-    }, [timeLeft])
+    }, [timeLeft, calculateTimeLeft])
 
     useEffect(() => {
         dispatch(getFormThunk())
@@ -79,7 +79,7 @@ function Clock(props){
             {clock ?
                 <div className="clockParent">
                     <div className="timerParent" id = "userClock">
-                        <img src={theImage} className="clockImage"/>
+                        <img src={theImage} alt="Clock GIF" className="clockImage"/>
                         <div className="titleFix">
                             <h1>{clock.title}</h1>
                             <div className="timerFix">

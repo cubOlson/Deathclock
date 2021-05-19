@@ -1,6 +1,6 @@
 .HomePageParent {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     width: 100%;
 }
 
@@ -9,5 +9,17 @@
 }
 
 .mainBox {
-    width: 85%;
+    width: 70%;
+}
+
+.myInfoBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: 15%;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+    margin: 10px;
+    border: 2px dashed black;
 }

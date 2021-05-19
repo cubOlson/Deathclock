@@ -23,7 +23,7 @@ const LoginForm = () => {
   const demoLogin = async (e) => {
     await setEmail('demo@aa.io')
     await setPassword('password')
-    const data = await dispatch(login(email, password));
+    const data = await dispatch(login('demo@aa.io', 'password'));
     if (data.errors) {
       setErrors(data.errors);
     }

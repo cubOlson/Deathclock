@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getFriendClocksThunk } from '../../store/friendClocks'
 import { getAllUsers } from '../../store/user'
@@ -18,10 +18,10 @@ function FClocksBox(){
         const clocks = friendClocks.clocks.filter(clock => user.followers.includes(clock.userId))
 
         FriendClockBox = clocks.map(clock => {
-            const thisUser = allUsers.filter(user => user.id == clock.userId)[0]
+            const thisUser = allUsers.filter(user => user.id === clock.userId)[0]
             const props = {clock, thisUser}
             return (
-                <FBox props={props} />
+                <FBox key={user.id} props={props} />
             )
         })
     }
