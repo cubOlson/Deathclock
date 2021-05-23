@@ -18,29 +18,32 @@ const NavBar = () => {
           <img src={logo} alt="Main Logo" className="navLogo"/>
           <h1>DeathClock</h1>
         </NavLink>
-          { !user ?
-            <div>
-              <NavLink to="/login" exact={true} className="button" activeClassName="active">
-                Login
-              </NavLink>
-              <NavLink to="/sign-up" exact={true} className="button" activeClassName="active">
-                Sign Up
-              </NavLink>
-            </div>
-          : <div className="welcome"> Logged in as "{user.username}"!</div>}
-          { user ?
-            <div className="navBoxRight">
-              <NavLink to="/friendList" exact={true} className="navLink" activeClassName="active">
-                <img src={FRIENDS} alt="friends" className="navLinkImage"/>
-                <h2>FRIENDS</h2>
-              </NavLink>
-              <NavLink to={`/users/${user.id}`} exact={true} className="navLink" activeClassName="active">
-                <img src={PROFILE} alt="friends" className="navLinkImage"/>
-                <h2>PROFILE</h2>
-              </NavLink>
-              <LogoutButton className="welcome"/>
-            </div>
-          : null}
+        { !user ?
+          <div>
+            <NavLink to="/login" exact={true} className="button" activeClassName="active">
+              Login
+            </NavLink>
+            <NavLink to="/sign-up" exact={true} className="button" activeClassName="active">
+              Sign Up
+            </NavLink>
+          </div>
+        : <div className="welcome">
+          <p>USER</p>
+          <h1>{user.username}</h1>
+        </div>}
+        { user ?
+          <div className="navBoxRight">
+            <NavLink to="/friendList" exact={true} className="navLink" activeClassName="active">
+              <img src={FRIENDS} alt="friends" className="navLinkImage"/>
+              <h2>FRIENDS</h2>
+            </NavLink>
+            <NavLink to={`/users/${user.id}`} exact={true} className="navLink" activeClassName="active">
+              <img src={PROFILE} alt="friends" className="navLinkImage"/>
+              <h2>PROFILE</h2>
+            </NavLink>
+            <LogoutButton className="welcome"/>
+          </div>
+        : null}
       </div>
     </nav>
   );

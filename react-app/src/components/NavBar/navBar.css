@@ -55,6 +55,32 @@
 }
 
 .welcome {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 30%;
+}
+
+.welcome h1 {
     box-sizing: border-box;
-    margin-left: 200px;
+    font-size: 5em;
+    border: 2px dashed black;
+    margin: 0px;
+    padding: 0px;
+}
+
+.welcome p {
+    margin: 0px;
+    padding: 0px;
+}
+
+#logoutButton {
+    background-color: white;
+    color: black;
+    border: none;
+}
+
+#logoutButton p, h1{
+    margin: 0px;
+    padding: 0px;
 }
