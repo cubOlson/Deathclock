@@ -6,6 +6,8 @@ import UserEditForm from './auth/UserEditForm'
 import { getClockThunk } from '../store/clock'
 import Clock from './Clock/clock'
 
+import './User.css'
+
 function User() {
 
   const dispatch = useDispatch()
@@ -35,37 +37,19 @@ function User() {
   }
 
   return (
-    <div>
+    <div id="userInfoContainer">
       {!check ?
-        <ul>
-          <li>
-            <strong>User Id</strong> {userId}
-          </li>
-          <li>
-            <strong>Username</strong> {user.username}
-          </li>
-          <li>
-            <strong>Full Name</strong> {user.fullname ? user.fullname : null}
-          </li>
-          <li>
-            <strong>Bio</strong> {user.bio ? user.bio : null}
-          </li>
-          <li>
-            <strong>Phone Number</strong> {user.phoneNumber ? user.phoneNumber : null}
-          </li>
-          <li>
-            <strong>Emergency Contact Name</strong> {user.ecname ? user.ecname : null}
-          </li>
-          <li>
-            <strong>Emergency Contact Phone Number</strong> {user.ecPhone ? user.ecPhone : null}
-          </li>
-          <li>
-            <strong>Email</strong> {user.email}
-          </li>
+        <div id="userInfoBox">
+          <p>USER ID: {userId}</p>
+          <p>USERNAME: {user.username}</p>
+          <p>FULL NAME: {user.fullname ? user.fullname : null}</p>
+          <p>BIO: {user.bio ? user.bio : null}</p>
+          <p> PHONE NUMBER: {user.phoneNumber ? user.phoneNumber : null}</p>
+          <p>EMERGENCY CONTACT: {user.ecname ? user.ecname : "No name,"} , {user.ecPhone ? user.ecPhone : "no number"}</p>
           {currentUser.id===parseInt(userId) ? <button onClick={e => setCheck(true)}>Edit</button> 
           : clock.id ? <Clock clock={clock}/> : null}
         
-        </ul>
+        </div>
       : <div><UserEditForm /><button onClick={e => setCheck(false)}>Cancel</button></div>}
     </div>
   );
