@@ -179,7 +179,7 @@ function Clock(props){
                             </GoogleMap>
 
                         </LoadScript>
-                    : <h2>{user.username} has not provided coordinates.</h2>}
+                    : <h2>No coordinates were provided.</h2>}
                     <div className="tagParent">
                         {clock.supplies.length ?
                             <div>
@@ -191,9 +191,9 @@ function Clock(props){
                             </div>
                         : <p>No Supplies</p>}
                     </div>
-                    {(form !== 'addSupplies') && <button onClick={e => dispatch(setFormThunk('addSupplies'))}>Add Supplies</button>}
-                    {(form === 'addSupplies') && <button onClick={e => dispatch(setFormThunk(false))}>Cancel Supplies</button>}
-                    <button onClick={e => deleteClock(e)}>Cancel Clock</button>
+                    {(form !== 'addSupplies' && clock.userId === user.id) && <button onClick={e => dispatch(setFormThunk('addSupplies'))}>Add Supplies</button>}
+                    {(form === 'addSupplies' && clock.userId === user.id) && <button onClick={e => dispatch(setFormThunk(false))}>Cancel Supplies</button>}
+                    {(clock.userId === user.id) && <button onClick={e => deleteClock(e)}>Cancel Clock</button>}
                     {(form === 'addSupplies') && <SupplyForm clock={clock}/>}
                 </div>
             : null}
