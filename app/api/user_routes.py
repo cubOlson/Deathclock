@@ -16,6 +16,13 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
+@user_routes.route('/notFollowing')
+@login_required
+def notFollowing():
+    users = User.query.filter(~User.follows.any(User.id == current_user.id), User.id != current_user.id).all()
+    print('HEEEEEERE', users)
+    return {"users": [user.to_dict() for user in users]}
+
 @user_routes.route('/follow/<int:id>')
 @login_required
 def follow(id):

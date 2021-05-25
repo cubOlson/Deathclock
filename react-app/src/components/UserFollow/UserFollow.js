@@ -1,6 +1,7 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllUsers } from '../../store/user'
+import { getNonFollowersThunk } from '../../store/follows'
 import SingleUser from '../SingleUser/SingleUser'
 
 import './UserFollow.css'
@@ -9,10 +10,10 @@ function UserFollow() {
     const dispatch = useDispatch()
     const currentUser = useSelector(state => state.session.user)
     const users = Object.values(useSelector(state => state.users))
+    const nonfollowers = Object.values(useSelector(state => state.followers))
 
-    useEffect(() => {
-        dispatch(getAllUsers())
-    }, [dispatch])
+    console.log('NOTFOLLOWING', nonfollowers)
+
 
     let userBox = users.filter(user => user.id !== currentUser.id)
                        .filter(user => !currentUser.followers.includes(user.id))
@@ -36,6 +37,12 @@ function UserFollow() {
                                  </div>
                              )
                          })
+
+                         
+    useEffect(() => {
+        dispatch(getAllUsers())
+        dispatch(getNonFollowersThunk())
+    }, [dispatch])
     
     
     return (

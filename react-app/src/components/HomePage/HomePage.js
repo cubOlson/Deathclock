@@ -22,6 +22,7 @@ function Home(){
     let userId
     if (user){
         userId = user.id
+        console.log('FOLLOWERS', user.followers)
     }
 
     useEffect(() => {
@@ -36,12 +37,12 @@ function Home(){
         <div className="HomePageParent">
             <FClocksBox className="sideBar"/> 
             <div className="mainBox">
-                {!clock.id && <button onClick={e => dispatch(setFormThunk(true))}>Create New Clock</button>}
                 {clock.id ?
                     <div>
                         <Clock clock={clock}/>
                     </div>
                 : <h2>You do not have an active clock.</h2>}
+                {!clock.id && <button onClick={e => dispatch(setFormThunk(true))}>Create New Clock</button>}
                 {(form === true) && <button onClick={e => dispatch(setFormThunk(false))}>Cancel Clock</button>}
                 {(form === true) && <ClockForm />}
             </div>

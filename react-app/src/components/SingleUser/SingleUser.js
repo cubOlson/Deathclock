@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { followUserThunk, unfollowUserThunk } from '../../store/user'
+import { getNonFollowersThunk } from '../../store/follows'
 
 import './SingleUser.css'
 
@@ -11,28 +12,28 @@ function SingleUser(props){
 
     const check = currentUser.followers.includes(user.id)
 
-    const handleAddFollow = async (e, user) => {
-        console.log('Added')
+    const handleAddFollow = async (e) => {
         await dispatch(followUserThunk(user.id))
-        window.location.reload()
+        await dispatch(getNonFollowersThunk())
+        // window.location.reload()
     }
 
-    const handleRemoveFollow = async (e, user) => {
-        console.log('Removed')
+    const handleRemoveFollow = async (e) => {
         await dispatch(unfollowUserThunk(user.id))
-        window.location.reload()
+        await dispatch(getNonFollowersThunk())
+        // window.location.reload()
     }
 
     return (
-        <a href={check ? `/users/${user.id}` : '/friendList'} className="singleUserBox">
+        <div className="singleUserBox">
             <div>
                 <h2>{user.username}</h2>
                 <p>{user.bio}</p>
             </div>
             {!check ?
-                <button onClick={e => handleAddFollow(e, user)}>Follow User</button>
-            : <button onClick={e => handleRemoveFollow(e, user)}>Unfollow User</button>}
-        </a>
+                <button onClick={e => handleAddFollow(e)}>Follow User</button>
+            : <button onClick={e => handleRemoveFollow(e)}>Unfollow User</button>}
+        </div>
     )
 }
 

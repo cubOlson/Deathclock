@@ -5,6 +5,7 @@ import userReducer from './user'
 import clockReducer from './clock'
 import formReducer from './form'
 import friendClockReducer from './friendClocks'
+import followersReducer from './follows'
 
 
 const rootReducer = combineReducers({
@@ -12,7 +13,8 @@ const rootReducer = combineReducers({
     users: userReducer,
     clock: clockReducer,
     form: formReducer,
-    friendClock: friendClockReducer
+    friendClock: friendClockReducer,
+    followers: followersReducer,
 });
 
 let enhancer;
