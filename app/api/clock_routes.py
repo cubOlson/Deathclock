@@ -1,6 +1,6 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
-from app.models import db, Clock, Supply
+from app.models import db, Clock, Supply, User
 from app.forms import NewClockForm
 
 clock_routes = Blueprint('clock', __name__)
@@ -14,7 +14,7 @@ def getUserClock(id):
 
 @clock_routes.route('/')
 def getAllClocks():
-    clocks = Clock.query.filter(Clock.userId != current_user.id).all()
+    clocks = Clock.query.filter(Clock.userId != current_user.id, current_user.is_following(User)).all()
     if clocks:
         return {"clocks": [clock.to_dict() for clock in clocks]}
     return {"clocks": []}

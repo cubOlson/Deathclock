@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from 'react-redux'
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
+import { unfollowUserThunk } from '../store/user'
+import { getNonFollowersThunk } from '../store/follows'
+import { getFriendClocksThunk } from '../store/friendClocks'
 import UserEditForm from './auth/UserEditForm'
 
 import { getClockThunk } from '../store/clock'
@@ -11,6 +14,7 @@ import './User.css'
 function User() {
 
   const dispatch = useDispatch()
+  const history = useHistory()
 
   const [user, setUser] = useState({});
   const [check, setCheck] = useState(false)
@@ -36,6 +40,13 @@ function User() {
     return null;
   }
 
+  const handleRemoveFollow = async (e) => {
+    await dispatch(unfollowUserThunk(user.id))
+    await dispatch(getNonFollowersThunk())
+    await dispatch(getFriendClocksThunk())
+    history.push('/')
+}
+
   return (
     <div id="userInfoContainer">
       {!check ?
@@ -47,7 +58,11 @@ function User() {
           <p> PHONE NUMBER: {user.phoneNumber ? user.phoneNumber : null}</p>
           <p>EMERGENCY CONTACT: {user.ecname ? user.ecname : "No name,"} , {user.ecPhone ? user.ecPhone : "no number"}</p>
           {currentUser.id===parseInt(userId) ? <button onClick={e => setCheck(true)}>Edit</button> 
-          : clock.id ? <Clock clock={clock}/> : null}
+          : clock.id ? 
+          <div>
+            <Clock clock={clock}/>
+            <button onClick={e => handleRemoveFollow(e)}>Unfollow User</button>
+          </div> : <button onClick={e => handleRemoveFollow(e)}>Unfollow User</button>}
         
         </div>
       : <div><UserEditForm /><button onClick={e => setCheck(false)}>Cancel</button></div>}
