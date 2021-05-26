@@ -120,3 +120,9 @@
 .tagParent p {
     border-bottom: 1px dashed black;
 }
+
+#clockButtons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}

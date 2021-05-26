@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { getAllUsers } from '../../store/user'
 import { getNonFollowersThunk } from '../../store/follows'
@@ -11,11 +11,9 @@ function UserFollow() {
     const currentUser = useSelector(state => state.session.user)
     const nonfollowers = Object.values(useSelector(state => state.followers))
 
-    console.log('NOTFOLLOWING', nonfollowers)
-    console.log('FOLLOWERS', currentUser.follows)
+    const [search, setSearch] = useState("")
 
-
-    let userBox = nonfollowers.map(user => {
+    let userBox = nonfollowers.filter(user => user.username.toLowerCase().includes(search.toLowerCase())).map(user => {
         return (
             <div>
                 {user ?
@@ -35,6 +33,14 @@ function UserFollow() {
     
     return (
         <div>
+            <input
+                type="text"
+                placeholder="Search by username"
+                value={search}
+                onChange={e => setSearch(e.target.value)}
+            >
+            
+            </input>
             <div className="allUserBox">
                 {nonfollowers.length > 0 ?
                     <div className="filteredUserBox">

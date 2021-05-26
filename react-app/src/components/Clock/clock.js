@@ -191,9 +191,11 @@ function Clock(props){
                             </div>
                         : <p>No Supplies</p>}
                     </div>
-                    {(form !== 'addSupplies' && clock.userId === user.id) && <button onClick={e => dispatch(setFormThunk('addSupplies'))}>Add Supplies</button>}
                     {(form === 'addSupplies' && clock.userId === user.id) && <button onClick={e => dispatch(setFormThunk(false))}>Cancel Supplies</button>}
-                    {(clock.userId === user.id) && <button onClick={e => deleteClock(e)}>Cancel Clock</button>}
+                    <div id="clockButtons">
+                        {(form !== 'addSupplies' && clock.userId === user.id) && <button onClick={e => dispatch(setFormThunk('addSupplies'))}>Add Supplies</button>}
+                        {(clock.userId === user.id) && <button onClick={e => deleteClock(e)}>Cancel Clock</button>}
+                    </div>
                     {(form === 'addSupplies') && <SupplyForm clock={clock}/>}
                 </div>
             : null}

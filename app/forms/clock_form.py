@@ -12,7 +12,5 @@ class NewClockForm(FlaskForm):
     address = StringField('address')
     startLat = FloatField('startLat')
     startLong = FloatField('startLong')
-    endLat = FloatField('endLat')
-    endLong = FloatField('endLong')
 
 

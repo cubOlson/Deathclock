@@ -135,26 +135,6 @@ function CreateClockForm(){
                     onChange={e => setStartLong(e.target.value)}
                 >
                 </input>
-                <label>Optional Destination Latitude</label>
-                <input
-                    className="clockFormInput"
-                    type="number"
-                    step=".00001"
-                    placeholder="(Optional) Destination latitude."
-                    value={endLat}
-                    onChange={e => setEndLat(e.target.value)}
-                >
-                </input>
-                <label>Optional Destination Longitude</label>
-                <input
-                    className="clockFormInput"
-                    type="number"
-                    step=".00001"
-                    placeholder="(Optional) Destination longitude."
-                    value={endLong}
-                    onChange={e => setEndLong(e.target.value)}
-                >
-                </input>
                 <button type="submit">Submit</button>
             </form>
         </div>
