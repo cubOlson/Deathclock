@@ -41,7 +41,7 @@ const NavBar = () => {
               <img src={PROFILE} alt="friends" className="navLinkImage"/>
               <h2>PROFILE</h2>
             </NavLink>
-            <LogoutButton className="welcome"/>
+            <LogoutButton className="navLink"/>
           </div>
         : null}
       </div>

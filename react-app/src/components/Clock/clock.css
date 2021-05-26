@@ -1,6 +1,7 @@
 .componentParent {
     display: flex;
     justify-content: center;
+    width: 100%;
 }
 
 .clockParent {
@@ -21,6 +22,11 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+.titleFriendTitle {
+    width: 100%;
+    word-wrap: break-word;
 }
 
 .timerFix {
@@ -87,6 +93,7 @@
     padding: 10px;
     height: 90%;
     width: 50%;
+    min-width: 250px;
 }
 
 .clockDescription {

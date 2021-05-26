@@ -8,7 +8,6 @@ import './UserFollow.css'
 
 function UserFollow() {
     const dispatch = useDispatch()
-    const currentUser = useSelector(state => state.session.user)
     const nonfollowers = Object.values(useSelector(state => state.followers))
 
     const [search, setSearch] = useState("")

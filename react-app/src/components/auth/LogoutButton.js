@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux"
 import { logout } from "../../store/session";
 
 import '../NavBar/navBar.css'
+import LOGOUT from '../../images/LOGOUT.gif'
 
 const LogoutButton = () => {
   const dispatch = useDispatch()
@@ -11,8 +12,8 @@ const LogoutButton = () => {
   };
 
   return <button onClick={onLogout} id="logoutButton">
-    <h1>X</h1>
-    <p>Logout</p>
+    <img src={LOGOUT} alt="logout" className="navLinkImage" />
+    <h2>LOGOUT</h2>
   </button>;
 };
 

@@ -105,7 +105,9 @@ function Clock(props){
                     <div className="timerParent" id = "userClock">
                         <img src={theImage} alt="Clock GIF" className="clockImage"/>
                         <div className="titleFix">
-                            <h1>{clock.title}</h1>
+                            <div className="titleFixTitle">
+                                <h1>{clock.title}</h1>
+                            </div>
                             <div className="timerFix">
                                 <div className="timerBox">
                                     <div className="titleBox">
