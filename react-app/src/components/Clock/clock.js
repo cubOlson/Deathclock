@@ -80,7 +80,7 @@ function Clock(props){
 
     let location = null;
     if (clock && user) {
-        if (clock.startLat !== 0 && clock.startLong !== 0) {
+        if (clock.startLat !== 0 || clock.startLong !== 0) {
         location = {
             lat: clock.startLat,
             lng: clock.startLong
