@@ -12,12 +12,13 @@ def getUserClock(id):
         return clock[0].to_dict()
     return {}
 
-@clock_routes.route('/')
-def getAllClocks():
-    clocks = Clock.query.filter(Clock.userId != current_user.id, current_user.is_following(User)).all()
+@clock_routes.route('/friends/<int:id>')
+def getAllClocks(id):
+    user = User.query.get(id)
+    clocks = Clock.query.filter(Clock.userId != user.id and user.is_following(User)).all()
     if clocks:
         return {"clocks": [clock.to_dict() for clock in clocks]}
-    return {"clocks": []}
+    return {"clocks": None}
 
 @clock_routes.route('/new', methods=["POST"])
 def create_clock():

@@ -20,10 +20,10 @@ const NavBar = () => {
         </NavLink>
         { !user ?
           <div>
-            <NavLink to="/login" exact={true} className="button" activeClassName="active">
+            <NavLink to="/login" exact={true} className="navLink" activeClassName="active">
               Login
             </NavLink>
-            <NavLink to="/sign-up" exact={true} className="button" activeClassName="active">
+            <NavLink to="/sign-up" exact={true} className="navLink" activeClassName="active">
               Sign Up
             </NavLink>
           </div>
@@ -35,7 +35,7 @@ const NavBar = () => {
           <div className="navBoxRight">
             <NavLink to="/friendList" exact={true} className="navLink" activeClassName="active">
               <img src={FRIENDS} alt="friends" className="navLinkImage"/>
-              <h2>FRIENDS</h2>
+              <h2>ADD USERS</h2>
             </NavLink>
             <NavLink to={`/users/${user.id}`} exact={true} className="navLink" activeClassName="active">
               <img src={PROFILE} alt="friends" className="navLinkImage"/>

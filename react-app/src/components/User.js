@@ -42,8 +42,9 @@ function User() {
 
   const handleRemoveFollow = async (e) => {
     await dispatch(unfollowUserThunk(user.id))
-    await dispatch(getNonFollowersThunk())
-    await dispatch(getFriendClocksThunk())
+    await dispatch(getNonFollowersThunk(currentUser.id))
+    await dispatch(getFriendClocksThunk(currentUser.id))
+    
     history.push('/')
 }
 

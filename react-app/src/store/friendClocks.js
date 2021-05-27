@@ -5,8 +5,8 @@ const getFriendClocks = (clocks) => ({
     payload: clocks
 })
 
-export const getFriendClocksThunk = () => async(dispatch) => {
-    const response = await fetch(`/api/clock/`)
+export const getFriendClocksThunk = (id) => async(dispatch) => {
+    const response = await fetch(`/api/clock/friends/${id}`)
     const data = await response.json()
     if (data.errors){
         return data

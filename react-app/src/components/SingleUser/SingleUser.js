@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { followUserThunk } from '../../store/user'
 import { getNonFollowersThunk } from '../../store/follows'
 import { getFriendClocksThunk } from '../../store/friendClocks'
@@ -9,11 +9,12 @@ import './SingleUser.css'
 function SingleUser(props){
     const dispatch = useDispatch()
     const user = props.user;
+    const currentUser = useSelector(state => state.session.user)
 
     const handleAddFollow = async (e) => {
         await dispatch(followUserThunk(user.id))
-        await dispatch(getNonFollowersThunk())
-        await dispatch(getFriendClocksThunk())
+        dispatch(getNonFollowersThunk())
+        dispatch(getFriendClocksThunk(currentUser.id))
     }
 
     return (

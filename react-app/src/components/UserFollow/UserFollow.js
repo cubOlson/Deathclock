@@ -14,7 +14,7 @@ function UserFollow() {
 
     let userBox = nonfollowers.filter(user => user.username.toLowerCase().includes(search.toLowerCase())).map(user => {
         return (
-            <div>
+            <div key={user.id}>
                 {user ?
                     <SingleUser user={user} />
                 : null}
@@ -31,22 +31,22 @@ function UserFollow() {
     
     
     return (
-        <div>
-            <input
-                type="text"
-                placeholder="Search by username"
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-            >
-            
-            </input>
-            <div className="allUserBox">
+        <div id="searchContainer">
+            <div id="searchedUserBoxContainer">
+                <h1>Add Users</h1>
+                <label>Filter Users</label>
+                <input
+                    type="text"
+                    placeholder="Search by username"
+                    value={search}
+                    onChange={e => setSearch(e.target.value)}
+                >
+                </input>
                 {nonfollowers.length > 0 ?
-                    <div className="filteredUserBox">
-                        <h1>All Users</h1>
+                    <div id="searchedUserBox">
                         {userBox}
                     </div>
-                : <p className="filteredUserBox">You are following all current users! Congrats.</p>}
+                : <p>You are following all current users! Congrats.</p>}
             </div>
         </div>
     )

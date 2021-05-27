@@ -147,9 +147,9 @@ function Clock(props){
                             </div>
                         </div>
                         <div className="clockInfoBox">
-                            <p>Info:
+                            <div>Info:
                                 <div className="clockDescription">{clock.description}</div>
-                            </p>
+                            </div>
                             <p>Address: {clock.address}</p>
                         </div>
                     </div>
