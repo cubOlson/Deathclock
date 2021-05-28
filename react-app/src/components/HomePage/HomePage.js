@@ -22,7 +22,6 @@ function Home(){
     let userId
     if (user){
         userId = user.id
-        console.log('FOLLOWERS', user.followers)
     }
 
     useEffect(() => {

@@ -13,8 +13,6 @@ function FClocksBox(){
     const friendClocks = useSelector(state => state.friendClock)
     const allUsers = Object.values(useSelector(state => state.users))
 
-    console.log('FriendClock', friendClocks)
-
     let FriendClockBox
     if (friendClocks.clocks){
         const clocks = friendClocks.clocks.filter(clock => user.followers.includes(clock.userId))

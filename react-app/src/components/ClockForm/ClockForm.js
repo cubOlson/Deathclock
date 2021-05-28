@@ -16,8 +16,6 @@ function CreateClockForm(){
     const [address, setAddress] = useState("")
     const [startLat, setStartLat] = useState(0)
     const [startLong, setStartLong] = useState(0)
-    const [endLat, setEndLat] = useState(0)
-    const [endLong, setEndLong] = useState(0)
     const [errors, setErrors] = useState([])
 
     const handleSubmit = async(e) => {
@@ -33,9 +31,7 @@ function CreateClockForm(){
             endDate: new Date(endDate).toISOString(),
             address,
             startLat,
-            startLong,
-            endLat,
-            endLong
+            startLong
         }
 
         await dispatch(createClockThunk(payload))
