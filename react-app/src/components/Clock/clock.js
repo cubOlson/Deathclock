@@ -155,7 +155,7 @@ function Clock(props){
                     </div>
                     {location ? 
                         <LoadScript
-                            googleMapsApiKey='AIzaSyDWwU8yzxTMqPGtpe1t4sbTSveX-gu1R-U'>
+                            googleMapsApiKey='something'>
                             <GoogleMap
                                 mapContainerStyle={mapStyles}
                                 zoom={5}
